@@ -5,10 +5,10 @@ using System.Web;
 
 namespace ShoppingWeb.Models
 {
-    public class ShoppingList
+    public class Item
     {
-        public Guid ShoppingListId { get; set; }
+        public Guid ItemId { get; set; }
         public string Name { get; set; }
-        public virtual List<Item> Items { get; set; } = new List<Item>();
+
     }
 }

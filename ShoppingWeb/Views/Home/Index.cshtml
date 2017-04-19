@@ -6,16 +6,27 @@
                 <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">({{$index}}) {{list.Name}} (Items: {{list.Items.length}})</li>
             </ul>
         </div>
-        <div class="col-md-6">
-            <div>{{ShoppingList.Name}}</div>
-            <ul>
+        <div class="col-md-8">
+            <div style="margin-left:15px;">{{ShoppingList.Name}}</div>
+            <ul style="list-style:circle">
                 <li ng-repeat="item in ShoppingList.Items">{{item}}</li>
             </ul>
         </div>
     </div>
 
-    <p ng-repeat="list in test">{{list.Name}}</p>
-    <button class="btn btn-default" ng-click="getAllLists()">Get all lists</button>
-    <button class="btn btn-default" ng-click="getList(id)">Get list</button>
-    <input type="number" ng-model="id" />
+    <div class="row">
+        <div class="col-md-12">
+            <p ng-repeat="list in test">{{list.Name}}</p>
+            <button class="btn btn-default" ng-click="getAllLists()">Get all lists</button>
+            <button class="btn btn-default" ng-click="getList(id)">Get list</button>
+            <input type="number" ng-model="id" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            
+        </div>
+        
+    </div>
 </div>

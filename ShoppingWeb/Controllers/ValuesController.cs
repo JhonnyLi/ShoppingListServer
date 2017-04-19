@@ -56,15 +56,64 @@ namespace ShoppingWeb.Controllers
                     Name = "En annan lista"
                 }
             };
-            model[0].Items.AddRange(new List<string> { "Lök", "Smör", "Bröd" });
-            model[1].Items.AddRange(new List<string> { "Gröt", "Coca Cola", "Kaviar", "Champinjoner","Tomat" });
+            model[0].Items.AddRange(new List<Item>()
+            {
+                new Item()
+                {
+                    ItemId = Guid.NewGuid(),
+                    Name = "Lök"
+                },
+                new Item()
+                {
+                    ItemId = Guid.NewGuid(),
+                    Name =  "Smör"
+                },
+                new Item()
+                {
+                    ItemId=Guid.NewGuid(),
+                    Name = "Bröd"
+                }
+            });
+            model[1].Items.AddRange(new List<Item>
+            {
+                new Item()
+                {
+                    ItemId = Guid.NewGuid(),
+                    Name = "Gröt"
+                },
+                new Item()
+                {
+                    ItemId = Guid.NewGuid(),
+                    Name =  "Coca Cola"
+                },
+                new Item()
+                {
+                    ItemId=Guid.NewGuid(),
+                    Name = "Kaviar"
+                },
+                new Item()
+                {
+                    ItemId=Guid.NewGuid(),
+                    Name = "Champinjoner"
+                },
+                new Item()
+                {
+                    ItemId=Guid.NewGuid(),
+                    Name = "Tomat"
+                }
+
+
+                //"Gröt", "Coca Cola", "Kaviar", "Champinjoner", "Tomat"
+
+
+            });
 
             return model;
         }
         private static ShoppingList GetShoppingListByIndex(int index)
         {
             var lists = GetShoppingLists();
-            if(index <= lists.Count)
+            if (index <= lists.Count)
             {
                 return lists[index];
             }
