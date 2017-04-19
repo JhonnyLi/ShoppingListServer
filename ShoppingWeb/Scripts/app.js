@@ -9,8 +9,8 @@ app.controller('indexController', ['$scope','$http', function($scope,$http){
             $scope.ShoppingLists = result.data;
             console.log("success: ", result);
         }, function (error) {
-            console.log("fail: ",error);
-        })
+            console.log("fail: ", error);
+        });
     };
     $scope.getList = function (id) {
         $http.get("http://sync.jhonny.se/api/Values/" + id).then(function (result) {
@@ -19,8 +19,8 @@ app.controller('indexController', ['$scope','$http', function($scope,$http){
         }, function (error) {
             $scope.ShoppingList = {};
             console.log("fail: ", error);
-        })
-    }
+        });
+    };
 }]);
 
 app.controller('mainController', ['$scope', function ($scope) {
