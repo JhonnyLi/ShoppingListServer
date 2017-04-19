@@ -5,32 +5,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ShoppingWeb.Models;
+using System.Web.Http.Cors;
 
 namespace ShoppingWeb.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ValuesController : ApiController
     {
         // GET api/values
         public IHttpActionResult Get()
         {
-            var model = new ShoppingList();
-            model.ShoppingListId = Guid.NewGuid();
-            model.Name = "Min shoppinglista";
-            model.Items.Add("Lök");
-            model.Items.Add("Smör");
-            model.Items.Add("Bröd");
-            model.Items.Add("Gröt");
-            model.Items.Add("Coca Cola");
-            model.Items.Add("Kaviar");
-            model.Items.Add("Champinjoner");
-            model.Items.Add("Tomat");
+            var model = GetShoppingLists();
+
             return Json(model);
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            var model = GetShoppingListByIndex(id);
+            return Json(model);
         }
 
         // POST api/values
@@ -47,5 +41,35 @@ namespace ShoppingWeb.Controllers
         public void Delete(int id)
         {
         }
+        private static List<ShoppingList> GetShoppingLists()
+        {
+            var model = new List<ShoppingList>()
+            {
+                new ShoppingList()
+                {
+                    ShoppingListId = Guid.NewGuid(),
+                    Name = "Min shoppinglista"
+                },
+                new ShoppingList()
+                {
+                    ShoppingListId = Guid.NewGuid(),
+                    Name = "En annan lista"
+                }
+            };
+            model[0].Items.AddRange(new List<string> { "Lök", "Smör", "Bröd" });
+            model[1].Items.AddRange(new List<string> { "Gröt", "Coca Cola", "Kaviar", "Champinjoner","Tomat" });
+
+            return model;
+        }
+        private static ShoppingList GetShoppingListByIndex(int index)
+        {
+            var lists = GetShoppingLists();
+            if(index <= lists.Count)
+            {
+                return lists[index];
+            }
+            return new ShoppingList();
+        }
     }
+
 }

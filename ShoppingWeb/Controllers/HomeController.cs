@@ -10,7 +10,7 @@ namespace ShoppingWeb.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewData["Title"] = "Start";
 
             return View();
         }
