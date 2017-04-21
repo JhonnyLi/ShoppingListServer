@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div style="margin-left:15px;">{{ShoppingList.Name}}</div>
             <ul style="list-style:circle">
-                <li ng-repeat="item in ShoppingList.Items">{{item}}</li>
+                <li ng-repeat="item in ShoppingList.Items">{{item.Name}}</li>
             </ul>
         </div>
     </div>
@@ -24,8 +24,16 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            
+        <div class="col-md-10">
+            <label>Name:</label><input type="text" />
+            <select>
+                <option ng-repeat="item in Items">{{item.Name}}</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <ul style="list-style:none">
+                <li ng-repeat="item in Items" ng-click="ShoppingList.Items.push(item)">{{item.Name}}</li>
+            </ul>
         </div>
         
     </div>

@@ -11,6 +11,7 @@ namespace ShoppingWeb.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ShoppingWeb.DbOps.DatabaseContext context)
@@ -27,55 +28,85 @@ namespace ShoppingWeb.Migrations
             //  new Person { FullName = "Rowan Miller" }
             //);
 
-            context.Items.AddOrUpdate(i => i.ItemId,
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Lök"
-                },
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Gurka"
-                },
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Bröd"
-                },
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Smör"
-                },
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Gröt"
-                },
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Vattenmelon"
-                },
-                new Item
-                {
-                    ItemId = Guid.NewGuid(),
-                    Name = "Tandborste"
-                }
+            #region items
+            var item1 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Lök"
+            };
+
+            var item2 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Gurka"
+            };
+
+            var item3 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Bröd"
+            };
+
+            var item4 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Smör"
+            };
+
+            var item5 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Gröt"
+            };
+
+            var item6 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Vattenmelon"
+            };
+
+            var item7 = new Item
+            {
+                ItemId = Guid.NewGuid(),
+                Name = "Tandborste"
+            };
+            #endregion
+
+            context.Items.AddOrUpdate(i => i.Name,
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6,
+                item7  
                 );
 
             context.ShoppingLists.AddOrUpdate(
-                p => p.ShoppingListId,
+                p => p.Name,
                 new ShoppingList
                 {
                     ShoppingListId = Guid.NewGuid(),
-                    Name = "Min lista"
+                    Name = "Min lista",
+                    Items = new System.Collections.Generic.List<Item>()
+                    {
+                        item1,
+                        item2,
+                        item3
+                    }
                 },
                 new ShoppingList
                 {
                     ShoppingListId = Guid.NewGuid(),
-                    Name = "En till lista"
+                    Name = "En till lista",
+                    Items = new System.Collections.Generic.List<Item>()
+                    {
+                        item4,
+                        item5,
+                        item6,
+                        item7
+                    }
+
                 }
                 );
 

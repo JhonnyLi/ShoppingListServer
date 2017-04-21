@@ -6,24 +6,50 @@ using System.Net.Http;
 using System.Web.Http;
 using ShoppingWeb.Models;
 using System.Web.Http.Cors;
+using ShoppingWeb.Interface;
 
 namespace ShoppingWeb.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ValuesController : ApiController
     {
+        private readonly DbOperations _dbOps;
+        public ValuesController()
+        {
+            _dbOps = new DbOperations();
+        }
         // GET api/values
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult Get()
         {
-            var model = GetShoppingLists();
-
+            //var model = GetShoppingLists();
+            var model = _dbOps.GetAllShoppingLists();
+            if(model == null)
+            {
+                model = new List<ShoppingList>()
+                {
+                    new ShoppingList
+                    {
+                        Name="Inga listor existerar"
+                    }
+                };
+            }
             return Json(model);
         }
 
         // GET api/values/5
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult Get(int id)
         {
-            var model = GetShoppingListByIndex(id);
+            //var model = GetShoppingListByIndex(id);
+            var model = _dbOps.GetShoppingListByIndex(id);
+            if (model == null)
+            {
+                model = new ShoppingList()
+                {
+                    Name = "Inga listor existerar"
+                };
+            }
             return Json(model);
         }
 
