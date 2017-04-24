@@ -241,3 +241,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/decrypt web.config.bat
+/encrypt web.config.bat
