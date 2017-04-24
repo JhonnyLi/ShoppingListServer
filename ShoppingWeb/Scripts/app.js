@@ -1,6 +1,9 @@
 ﻿var app = angular.module('mainApp', []);
 
 app.controller('indexController', ['$scope','$http', function($scope,$http){
+    var chat = "";
+    $scope.userName = "";
+    $scope.chatMessage = "";
     $scope.ShoppingLists = [];
     $scope.ShoppingList = {};
     $scope.Items = [];
@@ -36,6 +39,41 @@ app.controller('indexController', ['$scope','$http', function($scope,$http){
         });
     };
     $scope.getAllItems();
+    $scope.startHub = function () {
+        // Declare a proxy to reference the hub.
+        chat = $.connection.syncHub;
+        // Create a function that the hub can call to broadcast messages.
+        chat.client.broadcastMessage = function (name, message) {
+            // Html encode display name and message.
+            var encodedName = $('<div />').text(name).html();
+            var encodedMsg = $('<div />').text(message).html();
+            // Add the message to the page.
+            $('#discussion').append('<li><strong>' + encodedName
+                + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+        };
+        // Get the user name and store it to prepend to messages.
+        //$('#displayname').val(prompt('Name:', ''));
+        $scope.userName = prompt('Name:', '');
+        // Set initial focus to message input box.
+        $('#message').focus();
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+            $("#connected").text("Connected");
+            //$('#sendmessage').click(function () {
+            //    // Call the Send method on the hub.
+            //    chat.server.send($scope.userName, $scope.chatMessage);
+            //    // Clear text box and reset focus for next comment.
+            //    $('#message').val('').focus();
+            //});
+        });
+    };
+    $scope.startHub();
+    $scope.sendMessage = function () {
+        // Call the Send method on the hub.
+        chat.server.send($scope.userName, $scope.chatMessage);
+        // Clear text box and reset focus for next comment.
+        $('#message').val('').focus();
+    }
 }]);
 
 app.controller('mainController', ['$scope', function ($scope) {

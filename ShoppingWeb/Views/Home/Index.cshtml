@@ -37,4 +37,15 @@
         </div>
         
     </div>
+
+    <div class="container">
+        <label id="connected">Not connected</label><br/>
+        <input type="text" id="message" ng-model="chatMessage" />
+        <input type="button" value="Send" ng-click="sendMessage()" ng-disabled="!userName" />
+        @*<input type="button" id="sendmessage" value="Send" ng-disabled="!userName" />*@
+        @*<input type="text" id="displayname" ng-model="userName" />*@
+        <ul id="discussion" style="list-style:none"></ul>
+    </div>
+    
+    
 </div>

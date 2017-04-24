@@ -6,6 +6,7 @@
     <title>@ViewData["Title"]</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,9 +37,39 @@
             </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/signalr")
     @RenderSection("scripts", required: false)
+    <script src="signalr/hubs"></script>
+    <script type="text/javascript">
+        //$(function () {
+        //    // Declare a proxy to reference the hub.
+        //    var chat = $.connection.syncHub;
+        //    // Create a function that the hub can call to broadcast messages.
+        //    chat.client.broadcastMessage = function (name, message) {
+        //        // Html encode display name and message.
+        //        var encodedName = $('<div />').text(name).html();
+        //        var encodedMsg = $('<div />').text(message).html();
+        //        // Add the message to the page.
+        //        $('#discussion').append('<li><strong>' + encodedName
+        //            + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+        //    };
+        //    // Get the user name and store it to prepend to messages.
+        //    $('#displayname').val(prompt('Name:', ''));
+        //    // Set initial focus to message input box.
+        //    $('#message').focus();
+        //    // Start the connection.
+        //    $.connection.hub.start().done(function () {
+        //        $('#sendmessage').click(function () {
+        //            // Call the Send method on the hub.
+        //            chat.server.send($('#displayname').val(), $('#message').val());
+        //            // Clear text box and reset focus for next comment.
+        //            $('#message').val('').focus();
+        //        });
+        //    });
+        //});
+    </script>
 </body>
 </html>
