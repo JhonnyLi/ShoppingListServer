@@ -242,3 +242,5 @@ ModelManifest.xml
 .fake/
 /decrypt web.config.bat
 /encrypt web.config.bat
+/decryptweb.config.bat
+/encryptweb.config.bat

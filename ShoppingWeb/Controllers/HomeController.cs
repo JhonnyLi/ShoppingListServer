@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR;
+using ShoppingWeb.Hubs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,15 @@ namespace ShoppingWeb.Controllers
 {
     public class HomeController : Controller
     {
+        //private readonly SyncHub _signalRClient = new SyncHub();
+        //private static List<string> _signalRclientsConnected = new List<string>();
         public ActionResult Index()
         {
             ViewData["Title"] = "Start";
-
+            //var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
+            //hubContext.Clients.All.broadcastMessage("Server","Testmeddelande från servern");
+            //_signalRClient.Send("Server", "Test");
+            //SyncHub.SendMessage("Server ","Testmeddelande från servern");
             return View();
         }
     }
