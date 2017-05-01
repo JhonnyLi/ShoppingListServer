@@ -10,7 +10,7 @@
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="">
+        <div class="" style="height:5vh;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -21,55 +21,65 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li><a href="#!">Home</a></li>
+                    <li ng-show="userName === undefined || userName === ''"><a ng-click="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                    <li ng-show="userName !== undefined"><a ng-click="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                    <li ng-show="userName !== undefined || userName !== ''"><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{userName}}</a></li>
+                    @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
                 </ul>
             </div>
         </div>
     </div>
     <div class="body-content">
-        @RenderBody()
-        
+        <div class="row">
+            <div class="col-sm-2 side-menu">
+                <ul class="nav nav-pills nav-stacked" style="padding-top:15px;">
+                    <li role="presentation" ng-class="{active: location === '/'}">
+                        <a ng-click="navigate('')"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                    </li>
+                    <li role="presentation" ng-class="{active: location === '/create'}">
+                        <a ng-click="navigate('create')"><i class="fa fa-list" aria-hidden="true"></i> Create new list</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-7" ng-view>
+                @RenderBody()
+            </div>
+            
+            <div class="col-sm-2 chat-window">
+                <label style="margin-left:15px;">Chating with everyone</label><br />
+                <i class="fa fa-plug" ng-class="{'text-danger': !connected, 'text-success': connected}" aria-hidden="true"></i>
+                <input type="text" id="message" ng-model="chatMessage" ng-keyup="SendOnEnter($event)" />
+                <input type="button" value="Send" ng-click="sendMessage()" ng-disabled="!userName" />
+                <ul style="list-style:none;margin-top:5px; margin-left:-15px;">
+                    <li ng-repeat="message in ChatMessages track by $index">
+                        <strong>{{message.name}}:</strong><br /><i style="font-size:0.7em">({{message.timestamp.toLocaleTimeString()}})</i> {{message.message}}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-1 chat-window">
+                <label style="margin-left:15px;">Connected users</label><br />
+                <ul style="list-style:none;margin-top:5px; margin-left:-15px;">
+                    <li ng-repeat="user in connectedUsers track by $index">
+                        <i class="fa fa-user" aria-hidden="true"></i> {{user}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
     <div class="navbar navbar-inverse navbar-fixed-bottom">
-            <footer class="pull-right" style="color:lightgray">
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
+        <footer class="pull-right" style="color:lightgray;height:5px;">
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
     </div>
 
-    
+
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/signalr")
     @RenderSection("scripts", required: false)
     <script src="signalr/hubs"></script>
-    <script type="text/javascript">
-        //$(function () {
-        //    // Declare a proxy to reference the hub.
-        //    var chat = $.connection.syncHub;
-        //    // Create a function that the hub can call to broadcast messages.
-        //    chat.client.broadcastMessage = function (name, message) {
-        //        // Html encode display name and message.
-        //        var encodedName = $('<div />').text(name).html();
-        //        var encodedMsg = $('<div />').text(message).html();
-        //        // Add the message to the page.
-        //        $('#discussion').append('<li><strong>' + encodedName
-        //            + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-        //    };
-        //    // Get the user name and store it to prepend to messages.
-        //    $('#displayname').val(prompt('Name:', ''));
-        //    // Set initial focus to message input box.
-        //    $('#message').focus();
-        //    // Start the connection.
-        //    $.connection.hub.start().done(function () {
-        //        $('#sendmessage').click(function () {
-        //            // Call the Send method on the hub.
-        //            chat.server.send($('#displayname').val(), $('#message').val());
-        //            // Clear text box and reset focus for next comment.
-        //            $('#message').val('').focus();
-        //        });
-        //    });
-        //});
-    </script>
+
 </body>
 </html>

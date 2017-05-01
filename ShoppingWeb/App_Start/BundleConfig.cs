@@ -22,6 +22,7 @@ namespace ShoppingWeb
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                      "~/Scripts/angular.js",
+                     "~/Scripts/angular-route/angular-route.js",
                      "~/Scripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
@@ -30,6 +31,7 @@ namespace ShoppingWeb
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/site.css"));
         }
     }

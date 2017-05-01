@@ -15,3 +15,26 @@ select,
 textarea {
     max-width: 280px;
 }
+
+div.row#create-item-page{
+    margin-top:15px;
+    max-height:90vh;
+    overflow-y:auto;
+}
+li.list-item-deleted{
+    text-decoration:line-through;
+}
+div.chat-window{
+    padding-top:15px;
+    height:90vh;
+    border-left:0.5vw solid black;
+}
+div.side-menu{
+     height:90vh;
+     border-right:0.5vw solid black;
+}
+div.main-page{
+    margin-top:10px;
+    max-height:90vh;
+    overflow:auto;
+}

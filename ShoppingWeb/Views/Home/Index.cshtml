@@ -1,51 +1,58 @@
-﻿<div class="container" ng-controller="indexController">
+﻿@*<div class="row" ng-controller="indexController">
     <h1>{{$parent.Main}}</h1>
     <div class="row">
-        <div class="col-md-4">
-            <ul style="list-style:none;">
-                <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">({{$index}}) {{list.Name}} (Items: {{list.Items.length}})</li>
-            </ul>
+        <div class="col-md-2" style="height:60vh;background:pink;">
+            <label>{{userName}}</label>
         </div>
-        <div class="col-md-8">
-            <div style="margin-left:15px;">{{ShoppingList.Name}}</div>
-            <ul style="list-style:circle">
-                <li ng-repeat="item in ShoppingList.Items">{{item.Name}}</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <p ng-repeat="list in test">{{list.Name}}</p>
-            <button class="btn btn-default" ng-click="getAllLists()">Get all lists</button>
-            <button class="btn btn-default" ng-click="getList(id)">Get list</button>
-            <input type="number" ng-model="id" />
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-10">
-            <label>Name:</label><input type="text" />
-            <select>
-                <option ng-repeat="item in Items">{{item.Name}}</option>
-            </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <ul style="list-style:none;">
+                        <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">({{$index}}) {{list.Name}} (Items: {{list.Items.length}})</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <div style="margin-left:15px;">{{ShoppingList.Name}}</div>
+                    <ul style="list-style:circle">
+                        <li ng-repeat="item in ShoppingList.Items">{{item.Name}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p ng-repeat="list in test">{{list.Name}}</p>
+                    <button class="btn btn-default" ng-click="getAllLists()">Get all lists</button>
+                    <button class="btn btn-default" ng-click="getList(id)">Get list</button>
+                    <input type="number" ng-model="id" style="width:30px;" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <label>Name:</label><input type="text" />
+                    <select>
+                        <option ng-repeat="item in Items">{{item.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <ul style="list-style:none">
+                        <li ng-repeat="item in Items" ng-click="ShoppingList.Items.push(item)">{{item.Name}}</li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-        <div class="col-md-2">
-            <ul style="list-style:none">
-                <li ng-repeat="item in Items" ng-click="ShoppingList.Items.push(item)">{{item.Name}}</li>
-            </ul>
-        </div>
-        
     </div>
 
     <div class="container">
-        <label id="connected">Not connected</label><br/>
+        <label id="connected">Not connected</label><br />
         <input type="text" id="message" ng-model="chatMessage" />
-        <input type="button" value="Send" ng-click="sendMessage()" ng-disabled="!userName" />
+        <input type="button" value="Send" ng-click="sendMessage()" ng-disabled="!userName" />*@
         @*<input type="button" id="sendmessage" value="Send" ng-disabled="!userName" />*@
         @*<input type="text" id="displayname" ng-model="userName" />*@
-        <ul id="discussion" style="list-style:none"></ul>
+        <@*ul id="discussion" style="list-style:none"></ul>
     </div>
-    
-    
-</div>
+
+
+</div>*@
