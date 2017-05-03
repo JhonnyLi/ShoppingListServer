@@ -54,8 +54,9 @@ namespace ShoppingWeb.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]ShoppingList model)
         {
+            var test = model;
         }
 
         // PUT api/values/5
