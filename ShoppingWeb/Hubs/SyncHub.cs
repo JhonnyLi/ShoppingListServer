@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
+using ShoppingWeb.App_Code;
 
 namespace ShoppingWeb.Hubs
 {
     public class SyncHub : Hub
     {
+        
         public void Send(string name, string message)
         {
             string userName = Clients.Caller.userName;
@@ -16,8 +18,12 @@ namespace ShoppingWeb.Hubs
         }
         public void ClientConnected()
         {
-            
+            var callerId = Context.ConnectionId;
             string name = Clients.Caller.userName;
+            if(!GlobalStorage.Clients.Any(n=>n.Value == name))
+            {
+                GlobalStorage.Clients.Add(callerId, name);
+            }
             Clients.All.connectionMessage(name, $"{name} connected");
         }
         public override Task OnConnected()
