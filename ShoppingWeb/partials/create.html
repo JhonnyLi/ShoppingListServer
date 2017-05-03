@@ -1,12 +1,12 @@
 ﻿<div id="create-item-page" class="row">
     <div class="col-md-12">
-        <form novalidate class="simple-form">
-            <label>Name: <input type="text" ng-model="newList.Name" /></label>
-            <label class="pull-right small">Date: <i>{{newList.CreatedDate.toLocaleString()}}</i></label>
+        <form novalidate class="simple-form">   <!--ng-submit="saveList($event)"-->
+            <label>Name: <input type="text" ng-model="newList.Name" required pattern=".{1,50}"/></label>
+            <!--<label class="pull-right small">Date: <i>{{newList.CreatedDate.toLocaleString()}}</i></label>-->
             <br />
 
             <label>Items on list: </label>
-            <div class="well well-sm">
+            <div class="well well-sm" style="min-height:15vh;">
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="item in newList.Items track by $index" ng-click="toggleActive(item,$event)">
                         <label ng-click="item.Active=!item.Active" style="{{item.Active === false ? 'text-decoration: line-through':''}}">
@@ -16,20 +16,14 @@
                     </li>
                 </ul>
             </div>
-            <!--<ul style="list-style:none; border:1px dashed darkgray; width:400px;" ng-show="newList.Items.length > 0">
-                <li ng-repeat="item in newList.Items track by $index">
-                    <label ng-click="item.Active=!item.Active" style="{{item.Active === false ? 'text-decoration: line-through':''}}">
-                        {{item.Name}}
-                    </label>
-                    <i class="fa fa-trash" aria-hidden="true" ng-show="item.Active === false" ng-click="removeItem($index,$event)"></i>
-                </li>
-            </ul>-->
+            
             <label>Add item: </label>
             <input type="text" ng-model="newItem.Name" ng-keyup="addWithEnter($event)" />
+            <input type="button" ng-click="addItem()" value="Add item"  ng-disabled="newItem.Name.length === 0" />
             <br />
             <hr />
-            <input type="button" ng-click="reset()" value="Reset" />
-            <input type="submit" ng-click="saveList()" value="Save" />
+            <input id="savebutton" class="btn-success" type="button" ng-click="saveList()" value="Save list" />
+            <input class="btn-warning" type="button" ng-click="reset()" value="Reset" />
         </form>
     </div>
 

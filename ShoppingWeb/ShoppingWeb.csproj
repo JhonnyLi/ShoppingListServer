@@ -166,6 +166,7 @@
     <Folder Include="Views\Items\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\GlobalStorage.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -212,6 +213,10 @@
     <Compile Include="Migrations\201704211543214_initial.Designer.cs">
       <DependentUpon>201704211543214_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705031301368_UpdatedModels.cs" />
+    <Compile Include="Migrations\201705031301368_UpdatedModels.Designer.cs">
+      <DependentUpon>201705031301368_UpdatedModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ShoppingList.cs" />
@@ -227,6 +232,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="partials\api.html" />
@@ -236,7 +242,6 @@
     <Content Include="Scripts\angular-route\angular-route.min.js" />
     <Content Include="Scripts\angular-route\index.js" />
     <Content Include="Scripts\app.js" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
@@ -298,8 +303,6 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\RoutePartials\api.html" />
-    <Content Include="Views\RoutePartials\index.html" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -324,6 +327,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704211543214_initial.resx">
       <DependentUpon>201704211543214_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705031301368_UpdatedModels.resx">
+      <DependentUpon>201705031301368_UpdatedModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

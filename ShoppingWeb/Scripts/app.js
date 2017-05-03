@@ -35,7 +35,7 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
             localStorage.username = $scope.$parent.userName;
         }
         //SignalR
-        $scope.ChatMessages = [{ name: 'test', message: 'Message', timestamp: new Date() }, { name: 'test', message: 'Message 2', timestamp: new Date() }];
+        $scope.ChatMessages = [];
         var chatMessageObject = { name: "", message: "", timestamp: new Date() };
         $scope.startHub = function () {
             // Declare a proxy to reference the hub.
@@ -50,13 +50,16 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                 $scope.ChatMessages.push(recievedMessage);
                 $scope.$apply();
             };
-            chat.client.connectionMessage = function (name,message) {
+            chat.client.connectionMessage = function (name, message) {
                 var recievedMessage = angular.copy(chatMessageObject);
                 recievedMessage.name = "Server";
                 recievedMessage.message = message;
                 $scope.ChatMessages.push(recievedMessage);
                 $scope.connectedUsers.push(name);
                 $scope.$apply();
+            };
+            chat.client.userList = function (list) {
+                $scope.connectedUsers = list;
             }
             chat.client.listMessage = function (name, list) {
                 //Lägg till kod för att hantera listuppdateringar.
@@ -107,7 +110,7 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                 event.preventDefault();
             }
         });
-        
+
     }]);
 
 app.controller('indexController', ['$scope', '$http', '$location', '$rootScope',
@@ -167,13 +170,15 @@ app.controller('createController', ['$scope', '$http', '$location', '$rootScope'
         //angular.copy(itemObject, $scope.newItem);
         $scope.newItem = angular.copy(itemObject);
         $scope.addItem = function () {
-            $scope.$parent.preventRouteChange = true;
-            $scope.newList.Items.push($scope.newItem);
-            $scope.newItem = angular.copy(itemObject);
+            //debugger;
+            if ($scope.newItem.Name !== "") {
+                $scope.$parent.preventRouteChange = true;
+                $scope.newList.Items.push($scope.newItem);
+                $scope.newItem = angular.copy(itemObject);
+            }
         };
         $scope.addWithEnter = function (event) {
             event.preventDefault();
-            console.log("AddWithEnter");
             if (event.keyCode === 13 && $scope.newItem.Name.length > 1) {
                 $scope.addItem();
             }
@@ -189,12 +194,27 @@ app.controller('createController', ['$scope', '$http', '$location', '$rootScope'
             $scope.newList.Items.splice(index, 1);
             event.cancelBubble = true;
         };
+        $scope.saveList = function (event) {
+            //var x = document.activeElement;
+            //if (x.id === "savebutton") {
+            var dto = JSON.stringify($scope.newList);
+            $http.post("http://localhost:3768/api/Values", dto).then(function (result) {
+                //$http.post("http://sync.jhonny.se/api/Values", $scope.newList).then(function (result) {
+                //$http.get("http://localhost:3768/api/Values").then(function (result) {
+                $scope.ShoppingLists = result.data;
+                $scope.NumberOfLists = $scope.ShoppingLists.length > 0 ? $scope.ShoppingLists.length - 1 : $scope.ShoppingLists.length;
+                console.log("success: ", result);
+            }, function (error) {
+                console.log("fail: ", error);
+            });
+            //}
+        };
         $scope.toggleActive = function (item, event) {
-            if (currentDeleteTarget != item) {
-
+            if (currentDeleteTarget !== item) {
+                //delete ?
             }
         };
-        
+
     }]);
 
 

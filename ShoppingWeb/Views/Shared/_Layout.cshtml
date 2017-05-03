@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>@ViewData["Title"]</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -27,6 +29,7 @@
                     <li ng-show="userName !== undefined || userName !== ''"><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{userName}}</a></li>
                     @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
                 </ul>
+                
             </div>
         </div>
     </div>
@@ -40,6 +43,10 @@
                     <li role="presentation" ng-class="{active: location === '/create'}">
                         <a ng-click="navigate('create')"><i class="fa fa-list" aria-hidden="true"></i> Create new list</a>
                     </li>
+                </ul>
+                <label>Availible lists:</label>
+                <ul style="list-style:none;">
+                    <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">{{list.Name}} (Items: {{list.Items.length}})</li>
                 </ul>
             </div>
             <div class="col-sm-7" ng-view>
