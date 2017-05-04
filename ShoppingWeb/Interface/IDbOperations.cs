@@ -12,5 +12,8 @@ namespace ShoppingWeb.Interface
         ShoppingList GetShoppingListByIndex(int index);
         List<ShoppingList> GetAllShoppingLists();
         List<Item> GetAllItems();
+
+        bool AddNewList(ShoppingList model);
+        bool RemoveList(Guid model);
     }
 }

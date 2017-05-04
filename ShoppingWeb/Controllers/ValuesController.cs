@@ -54,19 +54,24 @@ namespace ShoppingWeb.Controllers
         }
 
         // POST api/values
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Post([FromBody]ShoppingList model)
         {
-            var test = model;
+            model.ShoppingListId = Guid.NewGuid();
+            _dbOps.AddNewList(model);
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public void Put(Guid id, [FromBody]ShoppingList model)
         {
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public void Delete(Guid id)
         {
+            
         }
         private static List<ShoppingList> GetShoppingLists()
         {
