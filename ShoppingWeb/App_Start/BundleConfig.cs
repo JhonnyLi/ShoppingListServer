@@ -8,6 +8,8 @@ namespace ShoppingWeb
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            BundleTable.EnableOptimizations = false;
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -22,8 +24,10 @@ namespace ShoppingWeb
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                      "~/Scripts/angular.js",
-                     "~/Scripts/angular-route/angular-route.js",
                      "~/Scripts/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularroute").Include(
+                     "~/Scripts/angular-route.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
                 "~/Scripts/jquery.signalR-2.2.1.js",

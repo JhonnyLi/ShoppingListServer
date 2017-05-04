@@ -1,4 +1,5 @@
 ﻿var app = angular.module('mainApp', ['ngRoute']);
+//var app = angular.module('mainApp', []);
 
 app.controller('mainController', ['$scope', '$route', '$routeParams', '$location',
     function ($scope, $route, $routeParams, $location) {
@@ -198,8 +199,8 @@ app.controller('createController', ['$scope', '$http', '$location', '$rootScope'
             //var x = document.activeElement;
             //if (x.id === "savebutton") {
             var dto = JSON.stringify($scope.newList);
-            $http.post("http://localhost:3768/api/Values", dto).then(function (result) {
-                //$http.post("http://sync.jhonny.se/api/Values", $scope.newList).then(function (result) {
+            //$http.post("http://localhost:3768/api/Values", dto).then(function (result) {
+                $http.post("http://sync.jhonny.se/api/Values", dto).then(function (result) {
                 //$http.get("http://localhost:3768/api/Values").then(function (result) {
                 $scope.ShoppingLists = result.data;
                 $scope.NumberOfLists = $scope.ShoppingLists.length > 0 ? $scope.ShoppingLists.length - 1 : $scope.ShoppingLists.length;
