@@ -6,6 +6,62 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         var chat = "";
         $scope.preventRouteChange = false;
         $scope.location = $location.path();
+        $scope.startHub = function () {
+            // Declare a proxy to reference the hub.
+            chat = $.connection.syncHub;
+            chat.state.userName = $scope.userName;
+            
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.broadcastMessage = function (name, message) {
+                // Add the message to the page.
+                var recievedMessage = angular.copy(chatMessageObject);
+                recievedMessage.name = name;
+                recievedMessage.message = message;
+                $scope.ChatMessages.push(recievedMessage);
+                $scope.$apply();
+            };
+            chat.client.connectionMessage = function (name, message) {
+                var recievedMessage = angular.copy(chatMessageObject);
+                recievedMessage.name = "Server";
+                recievedMessage.message = message;
+                $scope.ChatMessages.push(recievedMessage);
+                $scope.connectedUsers.push(name);
+                $scope.$apply();
+            };
+            chat.client.contextMessage = function (serial) {
+                
+                var x = JSON.parse(serial);
+                debugger;
+
+            };
+            chat.client.userList = function (list) {
+                $scope.connectedUsers = list;
+            }
+            chat.client.listMessage = function (name, list) {
+                //Lägg till kod för att hantera listuppdateringar.
+            };
+            // Get the user name and store it to prepend to messages.
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.logging = true;
+            $.connection.hub.qs = { 'username': $scope.userName };
+            //chat.qs = { 'username': 'Jhonny' };
+            //$.connection.hub.state.userName = "Jhonny";
+            $.connection.hub.start($scope.userName).done(function () {
+                $scope.connected = true;
+                //chat.server.send($scope.userName, $scope.userName + " connected");
+                chat.server.clientConnected();
+                $scope.$apply();
+                //$("#connected").text("Connected");
+                //$('#sendmessage').click(function () {
+                //    // Call the Send method on the hub.
+                //    chat.server.send($scope.userName, $scope.chatMessage);
+                //    // Clear text box and reset focus for next comment.
+                //    $('#message').val('').focus();
+                //});
+            });
+        };
         //In och utloggning
         $scope.logout = function () {
             $scope.userName = undefined;
@@ -38,53 +94,7 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         //SignalR
         $scope.ChatMessages = [];
         var chatMessageObject = { name: "", message: "", timestamp: new Date() };
-        $scope.startHub = function () {
-            // Declare a proxy to reference the hub.
-            chat = $.connection.syncHub;
-            chat.state.userName = $scope.userName;
-            // Create a function that the hub can call to broadcast messages.
-            chat.client.broadcastMessage = function (name, message) {
-                // Add the message to the page.
-                var recievedMessage = angular.copy(chatMessageObject);
-                recievedMessage.name = name;
-                recievedMessage.message = message;
-                $scope.ChatMessages.push(recievedMessage);
-                $scope.$apply();
-            };
-            chat.client.connectionMessage = function (name, message) {
-                var recievedMessage = angular.copy(chatMessageObject);
-                recievedMessage.name = "Server";
-                recievedMessage.message = message;
-                $scope.ChatMessages.push(recievedMessage);
-                $scope.connectedUsers.push(name);
-                $scope.$apply();
-            };
-            chat.client.userList = function (list) {
-                $scope.connectedUsers = list;
-            }
-            chat.client.listMessage = function (name, list) {
-                //Lägg till kod för att hantera listuppdateringar.
-            };
-            // Get the user name and store it to prepend to messages.
-            // Set initial focus to message input box.
-            $('#message').focus();
-            // Start the connection.
-            $.connection.hub.logging = true;
-            //$.connection.hub.state.userName = "Jhonny";
-            $.connection.hub.start($scope.userName).done(function () {
-                $scope.connected = true;
-                //chat.server.send($scope.userName, $scope.userName + " connected");
-                chat.server.clientConnected();
-                $scope.$apply();
-                //$("#connected").text("Connected");
-                //$('#sendmessage').click(function () {
-                //    // Call the Send method on the hub.
-                //    chat.server.send($scope.userName, $scope.chatMessage);
-                //    // Clear text box and reset focus for next comment.
-                //    $('#message').val('').focus();
-                //});
-            });
-        };
+        
         $scope.startHub();
         $scope.sendMessage = function () {
             // Call the Send method on the hub.
