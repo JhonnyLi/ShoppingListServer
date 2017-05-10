@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    var auth = Request.IsAuthenticated;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,7 +16,29 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '270392530055674',
+                xfbml      : true,
+                version    : 'v2.9'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        var auth = @auth.ToString().ToLower();
+    </script>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background:#c8bfe7;">
         <div class="" style="height:5vh;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,23 +46,48 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Synchronized Shopping List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="#" class="navbar-brand" style="text-shadow: 1px 1px black;">Synchronized Shopping List</a>
+                @*@Html.ActionLink("Synchronized Shopping List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#!">Home</a></li>
-                    <li ng-show="userName === undefined || userName === ''"><a ng-click="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-                    <li ng-show="userName !== undefined"><a ng-click="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
-                    <li ng-show="userName !== undefined || userName !== ''"><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{userName}}</a></li>
-                    @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
+                    <li><a href="#!" style="text-shadow: 1px 1px black;">Home</a></li>
+                    <li ng-show="userName === undefined || userName === ''" style="text-shadow: 1px 1px black;"><a ng-click="login()"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                    <li ng-show="userName !== undefined"><a ng-click="logout()" style="text-shadow: 1px 1px black;"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                    <li ng-show="userName !== undefined || userName !== ''" style="text-shadow: 1px 1px black;"><a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{userName}}</a></li>
+                    <li ng-show="userName !== undefined || userName !== ''" style="text-shadow: 1px 1px black;"><a href="#"> {{Auth}}</a></li>
                 </ul>
-                
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Request: @Request.IsAuthenticated</a></li>
+                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()" ng-click="isAuthorized()">Log off</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li><a ng-click="navigate('login')"><i class="fa fa-home" aria-hidden="true"></i> Login</a></li>
+                        @*<li>@Html.ActionLink("Log in", "Index", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                    </ul>
+                }
             </div>
         </div>
     </div>
     <div class="body-content">
         <div class="row">
-            <div class="col-sm-2 side-menu">
+            <div class="col-sm-2 side-menu" ng-show="Auth">
                 <ul class="nav nav-pills nav-stacked" style="padding-top:15px;">
                     <li role="presentation" ng-class="{active: location === '/'}">
                         <a ng-click="navigate('')"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
@@ -49,11 +101,11 @@
                     <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">{{list.Name}} (Items: {{list.Items.length}})</li>
                 </ul>
             </div>
-            <div class="col-sm-7" ng-view>
+            <div class="col-sm-6" ng-view>
                 @RenderBody()
             </div>
-            
-            <div class="col-sm-2 chat-window">
+
+            <div class="col-sm-2 chat-window" ng-show="Auth">
                 <label style="margin-left:15px;">Chating with everyone</label><br />
                 <i class="fa fa-plug" ng-class="{'text-danger': !connected, 'text-success': connected}" aria-hidden="true"></i>
                 <input type="text" id="message" ng-model="chatMessage" ng-keyup="SendOnEnter($event)" />
@@ -64,20 +116,26 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-sm-1 chat-window">
+            <div class="col-sm-2 chat-window" ng-show="Auth">
                 <label style="margin-left:15px;">Connected users</label><br />
                 <ul style="list-style:none;margin-top:5px; margin-left:-15px;">
                     <li ng-repeat="user in connectedUsers track by $index">
                         <i class="fa fa-user" aria-hidden="true"></i> {{user}}
                     </li>
                 </ul>
+               
             </div>
         </div>
 
     </div>
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <footer class="pull-right" style="color:lightgray;height:5px;">
-            <p>&copy; @DateTime.Now.Year</p>
+            &copy; @DateTime.Now.Year
+            <div class="fb-like"
+                 data-share="true"
+                 data-width="450"
+                 data-show-faces="true">
+            </div>
         </footer>
     </div>
 
@@ -88,6 +146,13 @@
     @Scripts.Render("~/bundles/signalr")
     @RenderSection("scripts", required: false)
     <script src="signalr/hubs"></script>
+    @{
+        if (Request.IsAuthenticated)
+        {
+        }
+
+    }
 
 </body>
+
 </html>

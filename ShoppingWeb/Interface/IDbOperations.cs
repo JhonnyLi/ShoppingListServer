@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShoppingWeb.Models;
+using ShoppingWeb.Models.Identity;
 
 namespace ShoppingWeb.Interface
 {
@@ -15,5 +16,11 @@ namespace ShoppingWeb.Interface
 
         bool AddNewList(ShoppingList model);
         bool RemoveList(Guid model);
+
+        List<SyncIdentityRole> GetAllRoles();
+        SyncIdentityUser GetUser(string name);
+        bool UserNameExists(string name);
+        bool UserEmailExists(string email);
+
     }
 }
