@@ -65,6 +65,7 @@ namespace ShoppingWeb.Controllers
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Put(Guid id, [FromBody]ShoppingList model)
         {
+
         }
 
         // DELETE api/values/5

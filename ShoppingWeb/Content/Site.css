@@ -27,14 +27,28 @@ li.list-item-deleted{
 div.chat-window{
     padding-top:15px;
     height:90vh;
-    border-left:0.5vw solid black;
+    border-left:0.5vw solid #808080;
 }
 div.side-menu{
      height:90vh;
-     border-right:0.5vw solid black;
+     border-right:0.5vw solid #808080;
 }
 div.main-page{
     margin-top:10px;
     max-height:90vh;
     overflow:auto;
+}
+div.not-logged-in-logo{
+    height:90vh;
+    width:100vw;
+    max-height:90vh;
+    overflow:auto;
+    background:#c8bfe7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+a.navbar-brand.navbar-brand-extras{
+    color:white;
 }

@@ -7,6 +7,7 @@ using ShoppingWeb.DbOps;
 using ShoppingWeb.Models.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ShoppingWeb.Constants;
 
 namespace ShoppingWeb.Interface
 {
@@ -78,47 +79,54 @@ namespace ShoppingWeb.Interface
         /// Get a list of all availible roles.
         /// </summary>
         /// <returns>List<SyncIdentityRole></returns>
-        public List<SyncIdentityRole> GetAllRoles()
-        {
-            //throw new NotImplementedException();
-            return _roleManager.Roles.ToList();
-        }
+        //public List<SyncIdentityRole> GetAllRoles()
+        //{
+        //    //throw new NotImplementedException();
+        //    return _roleManager.Roles.ToList();
+        //}
 
-        /// <summary>
-        /// Returns the user if found, else it returns null
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns>SyncIdentityUser | null</returns>
-        public SyncIdentityUser GetUser(string name)
-        {
-            //throw new NotImplementedException();
-            var userExists = _userManager.FindByName(name);
-            if(userExists != null)
-            {
-                return userExists;
-            }else
-            {
-                return null;
-            }
-        }
-        /// <summary>
-        /// Check if a specific name already exists.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns>Returns true or false</returns>
+        ///// <summary>
+        ///// Returns the user if found, else it returns null
+        ///// </summary>
+        ///// <param name="name"></param>
+        ///// <returns>SyncIdentityUser | null</returns>
+        //public SyncIdentityUser GetUser(string name)
+        //{
+        //    //throw new NotImplementedException();
+        //    var userExists = _userManager.FindByName(name);
+        //    if(userExists != null)
+        //    {
+        //        return userExists;
+        //    }else
+        //    {
+        //        return null;
+        //    }
+        //}
+        ///// <summary>
+        ///// Check if a specific name already exists.
+        ///// </summary>
+        ///// <param name="name"></param>
+        ///// <returns>Returns true or false</returns>
 
-        public bool UserNameExists(string name)
-        {
-            return _userManager.FindByName(name) != null ? true : false;
-        }
-        /// <summary>
-        /// Check if a specific email already exists.
-        /// </summary>
-        /// <param name="email"></param>
-        /// <returns>Returns true or false</returns>
-        public bool UserEmailExists(string email)
-        {
-            return _userManager.FindByEmail(email) != null ? true : false;
-        }
+        //public bool UserNameExists(string name)
+        //{
+        //    return _userManager.FindByName(name) != null ? true : false;
+        //}
+        ///// <summary>
+        ///// Check if a specific email already exists.
+        ///// </summary>
+        ///// <param name="email"></param>
+        ///// <returns>Returns true or false</returns>
+        //public bool UserEmailExists(string email)
+        //{
+        //    return _userManager.FindByEmail(email) != null ? true : false;
+        //}
+
+        //public SyncIdentityUser CreateUser(SyncIdentityUser user)
+        //{
+        //    _userManager.Create(user);
+        //    _userManager.AddToRole(user.Id, SyncConstants.User);
+        //    return user;
+        //}
     }
 }

@@ -220,6 +220,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Constants\SyncConstants.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -231,6 +232,8 @@
     <Compile Include="Hubs\SyncHub.cs" />
     <Compile Include="Interface\DbOperations.cs" />
     <Compile Include="Interface\IDbOperations.cs" />
+    <Compile Include="Interface\IdentityOperations.cs" />
+    <Compile Include="Interface\IIdentityOperations.cs" />
     <Compile Include="Migrations\201704211543214_initial.cs" />
     <Compile Include="Migrations\201704211543214_initial.Designer.cs">
       <DependentUpon>201704211543214_initial.cs</DependentUpon>

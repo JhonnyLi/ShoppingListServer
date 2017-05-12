@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using ShoppingWeb.App_Code;
 using Newtonsoft.Json;
 using Microsoft.AspNet.SignalR.Hosting;
+using ShoppingWeb.Interface;
+using ShoppingWeb.Models;
 
 namespace ShoppingWeb.Hubs
 {
@@ -23,14 +25,15 @@ namespace ShoppingWeb.Hubs
         {
             var callerId = Context.ConnectionId;
             var name = Context.QueryString["username"];
-            var serial = JsonConvert.SerializeObject(Context.QueryString);
-            Clients.All.contextMessage(serial);
             if (!GlobalStorage.Clients.Any(n=>n.Value == name))
             {
                 GlobalStorage.Clients.Add(callerId, name);
+                //Users skall skickas till klienterna och uppdatera vilka som är online.
+                //Hela listan skickas för att alla ska ha samma lista.
+                var users = JsonConvert.SerializeObject(GlobalStorage.Clients.ToList());
+                Clients.All.usersOnlineMessage(users);
             }
             Clients.All.connectionMessage(name, $"{name} connected");
-            //Clients.All.contextMessage(serial);
         }
         public override Task OnConnected()
         {
@@ -41,16 +44,11 @@ namespace ShoppingWeb.Hubs
             // the connection is established; for example, in a JavaScript client,
             // the start().done callback is executed.
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
-            var serial = JsonConvert.SerializeObject(Context.QueryString);
-            Clients.All.contextMessage(serial);
-            hubContext.Clients.All.contextMessage(serial);
-            //var callerId = Context.ConnectionId;
-            //var info = Context.User;
-            //var caller = Clients.Caller;
-            //string userName = Clients.Caller.userName;
-            //var users = hubContext.Clients.All;
+            //var serial = JsonConvert.SerializeObject(Context.QueryString);
+            //Clients.All.contextMessage(serial);
+            //hubContext.Clients.All.contextMessage(serial);
             var name = Context.QueryString["username"];
-            hubContext.Clients.All.connectionMessage(name, "Woop");
+            //hubContext.Clients.All.connectionMessage(name, "Woop");
             SyncHub.SendMessage("Server", $"{name} connected");
             return base.OnConnected();
         }
@@ -81,6 +79,15 @@ namespace ShoppingWeb.Hubs
         {
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
             hubContext.Clients.All.contextMessage("Server", serial);
+        }
+        public static void SendListUpdate()
+        {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
+            //listUpdateMessage måste läggas till i alla klienter så att dom får en uppdaterad lista.
+            //var list = JsonConvert.SerializeObject(GlobalStorage.Clients.ToList());
+            var _db = new DbOperations();
+            List<Item> list = _db.GetAllShoppingLists().First().Items;
+            hubContext.Clients.All.listUpdateMessage("Server", list);
         }
     }
 }

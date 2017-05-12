@@ -4,17 +4,26 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
-using ShoppingWeb.DbOps;
 using Microsoft.AspNet.Identity;
 using ShoppingWeb.Models.ViewModels;
 using ShoppingWeb.Models.Identity;
 using Microsoft.Owin.Security;
 using System.Web.Http.Cors;
+using ShoppingWeb.Constants;
+using ShoppingWeb.Interface;
+using ShoppingWeb.DbOps;
+using System.Text;
 
 namespace ShoppingWeb.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : Controller
     {
+        private readonly IdentityOperations _idOps;
+        public LoginController()
+        {
+            _idOps = new IdentityOperations();
+        }
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -22,23 +31,44 @@ namespace ShoppingWeb.Controllers
             return View();
         }
         [HttpPost]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public JsonResult Login([System.Web.Http.FromBody]LoginViewModel login)
         {
-            if (ModelState.IsValid && login.Password == login.ConfirmPassword)
+            if (ModelState.IsValid)
             {
                 var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
                 var authManager = HttpContext.GetOwinContext().Authentication;
-
-                SyncIdentityUser user = userManager.Find(login.UserName, login.Password);
-                if (user != null)
+                var userName = string.IsNullOrEmpty(login.LastName) ? login.FirstName : login.Email;
+                SyncIdentityUser user = new SyncIdentityUser();
+                var error = "";
+                user = userManager.Find(userName, login.Password);
+                try
                 {
-                    var ident = userManager.CreateIdentity(user,
-                        DefaultAuthenticationTypes.ApplicationCookie);
-                    authManager.SignIn(
-                        new AuthenticationProperties { IsPersistent = false }, ident);
-                    //return Redirect(Url.Action("Index", "Home"));
-                    return Json(login);
+                    if (user != null)
+                    {
+                        _idOps.SignInUser(user);
+                    }
+                    else
+                    {
+                        var PasswordHash = new PasswordHasher();
+
+                        var newUser = new SyncIdentityUser
+                        {
+                            UserName = userName,
+                            Email = login.Email,
+                            PasswordHash = PasswordHash.HashPassword(login.Password)
+                        };
+
+                        user = _idOps.CreateUser(newUser);
+                        _idOps.SignInUser(user);
+                    }
                 }
+                catch (Exception e)
+                {
+                    error = e.Message;
+                }
+                return Json(error);
+                //return Json(login);
             }
             ModelState.AddModelError("", "Invalid username or password");
             return Json(false);
@@ -51,7 +81,8 @@ namespace ShoppingWeb.Controllers
             var loggedIn = Request.IsAuthenticated;
             return Json(loggedIn);
         }
-        public ActionResult LogOff()
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public ActionResult LogOut()
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");

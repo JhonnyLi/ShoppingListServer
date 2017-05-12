@@ -17,10 +17,12 @@ namespace ShoppingWeb.Interface
         bool AddNewList(ShoppingList model);
         bool RemoveList(Guid model);
 
-        List<SyncIdentityRole> GetAllRoles();
-        SyncIdentityUser GetUser(string name);
-        bool UserNameExists(string name);
-        bool UserEmailExists(string email);
 
+        //Identity
+        //List<SyncIdentityRole> GetAllRoles();
+        //SyncIdentityUser GetUser(string name);
+        //bool UserNameExists(string name);
+        //bool UserEmailExists(string email);
+        //SyncIdentityUser CreateUser(SyncIdentityUser user);
     }
 }

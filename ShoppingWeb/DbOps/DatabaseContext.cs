@@ -14,7 +14,7 @@ namespace ShoppingWeb.DbOps
 {
     public class DatabaseContext : IdentityDbContext<SyncIdentityUser>
     {
-        public DatabaseContext() : base("name=SyncDb_remote_update")
+        public DatabaseContext() : base("name=SyncDb")
         {
 
         }

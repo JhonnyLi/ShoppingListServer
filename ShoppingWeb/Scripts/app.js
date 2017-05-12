@@ -1,29 +1,100 @@
 ﻿var app = angular.module('mainApp', ['ngRoute']);
 //var app = angular.module('mainApp', []);
 //var chat = $.connection.syncHub;
+
+window.fbAsyncInit = function () {
+    FB.init({
+        appId: '270392530055674',
+        xfbml: true,
+        version: 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+};
+
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.9&appId=270392530055674";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 app.controller('mainController', ['$scope', '$route', '$routeParams', '$location', '$rootScope', '$http',
     function ($scope, $route, $routeParams, $location, $rootScope, $http) {
         var chat = $.connection.syncHub;
         $scope.preventRouteChange = false;
         $scope.location = $location.path();
-        $scope.userTemplate = { UserName: "", Password: "", ConfirmPassword: "", FacebookToken:"" }
+        $scope.Auth = false;
+        $scope.userTemplate = { FirstName: "", LastName: "", Password: "", Email: "" };
         $scope.user = angular.copy($scope.userTemplate);
+        $scope.justLogShit = function () {
+            console.log($scope.user);
+        };
         $scope.isAuthorized = function () {
-            $http.post("http://localhost:3768/Login/CheckLogin").then(function (result) {
+            //http://sync.jhonny.se/api/Values
+            //$http.post("http://localhost:3768/Login/CheckLogin").then(function (result) {
+            $http.post("http://sync.jhonny.se/Login/CheckLogin").then(function (result) {
                 $scope.Auth = result.data;
                 if ($scope.Auth) {
                     $scope.startHub();
                 } else {
                     $scope.stopHub();
                 }
-                console.log("success: ", result);
             }, function (error) {
                 $scope.Auth = false;
                 console.log("fail: ", error);
             });
         };
+        $scope.Login = function (user) {
+            console.log("Login starts");
+            var dto = JSON.stringify($scope.user);
+            //dto = $scope.user;
+            console.log("Json object: ", dto);
+            //$http.post("http://localhost/Login/Login", dto).then(function (result) {
+            //$http.post("http://localhost:3768/Login/Login", dto).then(function (result) {
+            $http.post("http://sync.jhonny.se/Login/Login",dto).then(function (result) {
+                //$scope.user.UserName = result.data.UserName;
+                //$scope.user.FirstName = result.data.first_name;
+                //$scope.user.LastName = result.data.last_name;
+                $scope.isAuthorized();
+                //$scope.navigate('');
+                console.log("Login successful: ", result);
+            }, function (error) {
+                console.log("Login failed: ", error);
+            });
+            //}
+        };
+        $scope.FBLogin = function () {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', { fields: 'name,email,first_name,last_name' }, function (response) {
+                        $scope.user.UserName = response.name;
+                        //$scope.user.UserName = "Test";
+                        var fname = response.first_name;
+                        debugger;
+                        $scope.user.FirstName = response.first_name;
+                        $scope.user.LastName = response.last_name;
+                        $scope.user.Password = response.id;
+                        $scope.user.Email = response.email;
+                        $scope.Login()
+                    });
+                    
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, { scope: 'public_profile,email' });
+        }
 
-        $scope.Auth = false;
+        
 
         $scope.$watch('Auth', function () {
             if (!$scope.Auth) {
@@ -55,6 +126,14 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                     $scope.connectedUsers.push(name);
                     $scope.$apply();
                 };
+                chat.client.listUpdateMessage = function (list) {
+                    var updatedList = JSON.parse(list);
+                    $scope.ShoppingList.Items = updatedList;
+                    var recievedMessage = angular.copy(chatMessageObject);
+                    recievedMessage.name = "Server";
+                    recievedMessage.message = "List updated";
+                    $scope.ChatMessages.push(recievedMessage);
+                }
                 chat.client.contextMessage = function (serial) {
 
                     var x = JSON.parse(serial);
@@ -106,7 +185,6 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
             if ($scope.Auth) {
                 $scope.startHub();
             }
-            console.log(localStorage.username);
         };
         $scope.connected = false;
         $scope.connectedUsers = [];
@@ -145,9 +223,6 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         $scope.navigate = function (path) {
             var navigateTo = "/" + path;
             $location.path(navigateTo);
-            console.log($location);
-
-            //location.href = '/index.html';
         };
         $scope.$on("$locationChangeStart", function (event) {
             if ($scope.preventRouteChange) {
@@ -260,13 +335,19 @@ app.controller('createController', ['$scope', '$http', '$location', '$rootScope'
 
 app.controller('loginController', ['$scope', '$http', '$location', '$rootScope',
     function ($scope, $http, $location, $rootScope) {
-        FB.getLoginStatus(function (response) {
-            console.log("Facebook says: ",response);
-            statusChangeCallback(response);
-        });
+
+        function test(response) {
+            console.log("test:", response);
+        }
+        //FB.getLoginStatus(function (response) {
+        //    console.log("Facebook says: ", response);
+        //    //statusChangeCallback(response);
+        //    test(response);
+        //});
+
         $scope.$parent.location = $location.path();
         $scope.$parent.Title = "Login";
-        
+
         $scope.navigate = function (path) {
             var navigateTo = "/" + path;
             $location.path(navigateTo);
@@ -275,14 +356,13 @@ app.controller('loginController', ['$scope', '$http', '$location', '$rootScope',
         $scope.Login = function (user) {
             //var x = document.activeElement;
             //if (x.id === "savebutton") {
-            var dto = JSON.stringify($scope.$parent.user);
             //$http.post("http://localhost:3768/api/Values", dto).then(function (result) {
             //$http.post("http://sync.jhonny.se/api/Values", dto).then(function (result) {
-            $http.post("http://localhost:3768/Login/Login", dto).then(function (result) {
+            var dto = JSON.stringify($scope.$parent.user);
+            $http.post("http://sync.jhonny.se/Login/Login", dto).then(function (result) {
+                //$http.post("http://localhost:3768/Login/Login", dto).then(function (result) {
                 //$http.get("http://localhost:3768/api/Values").then(function (result) {
-                debugger;
                 $scope.$parent.user.UserName = result.data.UserName;
-                console.log(result);
                 $scope.$parent.isAuthorized();
                 $scope.navigate('');
                 console.log("success: ", result);

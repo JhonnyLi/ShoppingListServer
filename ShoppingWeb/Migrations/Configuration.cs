@@ -9,6 +9,7 @@ namespace ShoppingWeb.Migrations
     using Models.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using DbOps;
+    using Constants;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ShoppingWeb.DbOps.DatabaseContext>
     {
@@ -17,11 +18,11 @@ namespace ShoppingWeb.Migrations
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
-        static class Constants
-        {
-            public const string Admin = "Admin";
-            public const string User = "User";
-        }
+        //static class Constants
+        //{
+        //    public const string Admin = "Admin";
+        //    public const string User = "User";
+        //}
         protected override void Seed(DatabaseContext context)
         {
             //  This method will be called after migrating to the latest version.
@@ -37,29 +38,15 @@ namespace ShoppingWeb.Migrations
             //);
 
             var RoleManager = new RoleManager<SyncIdentityRole>(new RoleStore<SyncIdentityRole>(context));
-            //var roles = RoleManager.Roles.ToArray();
-            if (RoleManager.RoleExists(Constants.Admin) == false)
-            {
-                RoleManager.Create(new SyncIdentityRole(Constants.Admin));
-                
-            }
-            if (RoleManager.RoleExists(Constants.User) == false)
-            {
-                RoleManager.Create(new SyncIdentityRole(Constants.User));
 
+            if (RoleManager.RoleExists(SyncConstants.Admin) == false)
+            {
+                RoleManager.Create(new SyncIdentityRole(SyncConstants.Admin));
             }
-            //    {
-            //        RoleManager.Create(new SyncIdentityRole(roles[i].Name));
-            //    }
-            //for (int i = 0; i < Constants.Count(); i++)
-            //{
-            //    if (RoleManager.RoleExists(roles[i].Name) == false)
-            //    {
-            //        RoleManager.Create(new SyncIdentityRole(roles[i].Name));
-            //    }
-            //}
-
-            // user
+            if (RoleManager.RoleExists(SyncConstants.User) == false)
+            {
+                RoleManager.Create(new SyncIdentityRole(SyncConstants.User));
+            }
 
             var UserManager = new UserManager<SyncIdentityUser>(new UserStore<SyncIdentityUser>(context));
             var PasswordHash = new PasswordHasher();
@@ -73,7 +60,7 @@ namespace ShoppingWeb.Migrations
                 };
 
                 UserManager.Create(user);
-                UserManager.AddToRole(user.Id, Constants.Admin);
+                UserManager.AddToRole(user.Id, SyncConstants.Admin);
             }
 
             #region items
