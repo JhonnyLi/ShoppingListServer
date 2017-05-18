@@ -17,12 +17,12 @@
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
 
-    
+
     @*<script>
             var auth = @auth.ToString().ToLower();
         </script>*@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background:#c8bfe7;">
-        <div class="" style="height:5vh;">
+        <div class="container" style="height:5vh;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -36,21 +36,24 @@
                     <li><a href="#!" style="text-shadow: 1px 1px black;">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a ng-click="navigate('login')" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Login</a></li>
+                    @*<li><a ng-click="navigate('login')" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Login</a></li>*@
+                    <li><a ng-click="fakeLogin()" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Fake login</a></li>
                     @*<li><a href="javascript:document.getElementById('logoutForm').submit()" ng-click="isAuthorized()" ng-if="Auth">Log off</a></li>*@
-                    <li><a href="#" ng-click="justLogShit()" ng-if="Auth"><i class="fa fa-user" aria-hidden="true"></i> {{user.FirstName + ' ' + user.LastName}} </a></li>
+                    <li><a href="#" ng-if="Auth"><i class="fa fa-user" aria-hidden="true"></i> {{user.FirstName + ' ' + user.LastName}} </a></li>
                     <li><a href="#" ng-click="FBLogin()" ng-if="!Auth">Login with Facebook</a></li>
-                    <li><a href="/Login/Logout" ng-if="Auth">Log off</a></li>
+                    <li><a href="/Login/Logout" ng-if="Auth" ng-click="ClearLocalStorage()">Log off</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="body-content">
-        <div class="row">
-            <div class="col-md-12 not-logged-in-logo" ng-if="!Auth">
+        <div class="row" ng-if="!Auth">
+            <div class="col-sm-12 not-logged-in-logo" ng-if="!Auth">
                 <img src="~/Img/WebSync.png" />
             </div>
-            <div class="col-sm-2 side-menu" ng-show="Auth">
+        </div>
+        <div class="row">
+            @*<div class="col-sm-2 side-menu" ng-if="true">
                 <ul class="nav nav-pills nav-stacked" style="padding-top:15px;">
                     <li role="presentation" ng-class="{active: location === '/'}">
                         <a ng-click="navigate('')"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
@@ -63,8 +66,8 @@
                 <ul style="list-style:none;">
                     <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">{{list.Name}} (Items: {{list.Items.length}})</li>
                 </ul>
-            </div>
-            <div class="col-sm-6" ng-view ng-show="Auth">
+            </div>*@
+            <div class="col-sm-offset-2 col-sm-6"  ng-view ng-show="Auth">
                 @RenderBody()
             </div>
 

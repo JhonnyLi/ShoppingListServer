@@ -50,9 +50,10 @@ namespace ShoppingWeb.Migrations
 
             var UserManager = new UserManager<SyncIdentityUser>(new UserStore<SyncIdentityUser>(context));
             var PasswordHash = new PasswordHasher();
+            var user = new SyncIdentityUser();
             if (!context.Users.Any(u => u.UserName == "admin@jhonny.se"))
             {
-                var user = new SyncIdentityUser
+                user = new SyncIdentityUser
                 {
                     UserName = "admin@jhonny.se",
                     Email = "jhonny@jhonny.se",
@@ -67,43 +68,50 @@ namespace ShoppingWeb.Migrations
             var item1 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Lök"
+                Name = "Lök",
+                Active = true
             };
 
             var item2 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Gurka"
+                Name = "Gurka",
+                Active = true
             };
 
             var item3 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Bröd"
+                Name = "Bröd",
+                Active = true
             };
 
             var item4 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Smör"
+                Name = "Smör",
+                Active = true
             };
 
             var item5 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Gröt"
+                Name = "Gröt",
+                Active = true
             };
 
             var item6 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Vattenmelon"
+                Name = "Vattenmelon",
+                Active = true
             };
 
             var item7 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Tandborste"
+                Name = "Tandborste",
+                Active = true
             };
             #endregion
 
@@ -114,9 +122,8 @@ namespace ShoppingWeb.Migrations
                 item4,
                 item5,
                 item6,
-                item7  
+                item7
                 );
-
             context.ShoppingLists.AddOrUpdate(
                 p => p.Name,
                 new ShoppingList
@@ -127,25 +134,17 @@ namespace ShoppingWeb.Migrations
                     {
                         item1,
                         item2,
-                        item3
-                    }
-                },
-                new ShoppingList
-                {
-                    ShoppingListId = Guid.NewGuid(),
-                    Name = "En till lista",
-                    Items = new System.Collections.Generic.List<Item>()
-                    {
+                        item3,
                         item4,
                         item5,
                         item6,
-                        item7
-                    }
-
+                        item7,
+                    },
+                    User = user
                 }
                 );
         }
 
-        
+
     }
 }

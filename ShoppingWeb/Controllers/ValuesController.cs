@@ -7,6 +7,7 @@ using System.Web.Http;
 using ShoppingWeb.Models;
 using System.Web.Http.Cors;
 using ShoppingWeb.Interface;
+using ShoppingWeb.Models.ViewModels;
 
 namespace ShoppingWeb.Controllers
 {
@@ -42,7 +43,7 @@ namespace ShoppingWeb.Controllers
         public IHttpActionResult Get(int id)
         {
             //var model = GetShoppingListByIndex(id);
-            var model = _dbOps.GetShoppingListByIndex(id);
+            var model = _dbOps.GetShoppingListByUser();
             if (model == null)
             {
                 model = new ShoppingList()
@@ -55,13 +56,19 @@ namespace ShoppingWeb.Controllers
 
         // POST api/values
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public void Post([FromBody]ShoppingList model)
+        public void Post([FromBody]ShoppingListViewModel model)
         {
-            model.ShoppingListId = Guid.NewGuid();
-            _dbOps.AddNewList(model);
+            if(model.ShoppingListId == Guid.Empty) {
+                model.ShoppingListId = Guid.NewGuid();
+                _dbOps.AddNewList(model);
+            }else
+            {
+                _dbOps.AddOrUpdateList(model);
+            }
         }
 
         // PUT api/values/5
+        [HttpPut]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Put(Guid id, [FromBody]ShoppingList model)
         {

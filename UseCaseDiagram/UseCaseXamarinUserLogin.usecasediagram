@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="02e924d0-0b80-492e-a992-af8affb965e9" name="UseCaseXamarinUserLogin" linkedPackageId="156480ee-1e34-4332-821a-6ee146abcff6" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="e104b845-ae73-4c5f-a799-7a70c03dfa4e">
+      <profileInstance Id="30dd3bc6-d2cb-40df-a3c8-596437b29153" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="b96dbf71-a8f0-47b8-a1a5-f60b74897688">
+      <profileInstance Id="a9c6e8da-3e0d-4ac4-9c4b-130e0642f202" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="fdfc79e2-df9c-4aaf-a604-40d2fb9d4471" name="Xamarin App" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e15df336-6c37-4422-a301-11ca7a69321b" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="5c7f0c85-7420-4c98-a076-644a6034f1fd" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e50510bc-8ad2-4111-9bbe-a61655e80aa4" />
+        <targetEnds>
+          <association Id="8a6a7b34-5b84-4762-8767-2411d8e1662c" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Application startup" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="dcc85a61-869d-439c-afc3-ae346b94e6b4" LastKnownName="Application startup" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e12df4c0-3a5f-45e7-9489-41955c1d202a" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="97589442-2fad-4df1-b627-b04139e71312" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="99721a6a-686a-4f14-8584-3771577d3556" name="Application startup" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="14bcae06-b244-4814-955a-403009887ef7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5add6d23-a661-4199-928c-63f90c0e5e46" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="3475be7d-9835-41e6-ad97-95d07da4b632" name="Facebook" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="58f0f42c-8e7d-4220-afe8-dd4176b84534" />
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="cfb329cc-9169-4af0-b931-580d8cfeb843" name="Asp.Net Server" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6dac19c9-a8fd-42c3-8e2d-a7c909b262de" />
+      </actor>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="dcc85a61-869d-439c-afc3-ae346b94e6b4" name="Application startup" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1f4ed8c7-dc06-40a4-b87c-08bb519e53c9" />
+        <additions>
+          <include Id="96ed29f2-4d20-47db-b80d-3080943788c0">
+            <useCaseMoniker Id="340b88c3-4c74-4782-ac30-d3182cf70479" LastKnownName="Login" />
+            <elementDefinition Id="29ec5249-0aa9-4b9d-b8e2-39d027ecde06" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="fdfc79e2-df9c-4aaf-a604-40d2fb9d4471" LastKnownName="Xamarin App" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="340b88c3-4c74-4782-ac30-d3182cf70479" name="Login" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="41649fb9-34a0-462e-b53b-c0fdd8bdfbdd" />
+        <targetEnds>
+          <association Id="acebff8a-6b6f-4763-9cca-5f0e5ea10093" isDerived="false" sourceEndRoleName="Login" targetEndRoleName="Facebook" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="3475be7d-9835-41e6-ad97-95d07da4b632" LastKnownName="Facebook" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d037ccff-9220-4a11-bd39-6747a0279ff5" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e5150ccd-544d-44e2-8bcb-96b186952383" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="359d881f-4738-4ee7-a6f0-d38f4770d8fa" name="Facebook" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e6d59427-d290-4be6-b049-834c1a9b31cd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4fe3f554-457f-48b6-af54-d945bf3fea76" />
+          </association>
+        </targetEnds>
+        <extendedCases>
+          <extend Id="10f37e5d-d32d-4071-a32c-f22833423cad">
+            <useCaseMoniker Id="ca4de26a-0c12-466b-be5b-b17ee3f636af" LastKnownName="Login failure" />
+            <elementDefinition Id="f5ff90fb-bb1a-445a-8602-6cdc15bbabba" />
+          </extend>
+          <extend Id="bef4367f-6b73-4eff-adf0-8571511f60f6">
+            <useCaseMoniker Id="0048e672-682a-4e42-9083-6183bcb08e01" LastKnownName="Login success" />
+            <elementDefinition Id="0d98fc56-2185-49e1-8f36-857d13f95080" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="fdfc79e2-df9c-4aaf-a604-40d2fb9d4471" LastKnownName="Xamarin App" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="ca4de26a-0c12-466b-be5b-b17ee3f636af" name="Login failure" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2dc340ea-a529-45a8-a2f5-d16cc5ff4053" />
+        <subjects>
+          <subsystemMoniker Id="fdfc79e2-df9c-4aaf-a604-40d2fb9d4471" LastKnownName="Xamarin App" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="0048e672-682a-4e42-9083-6183bcb08e01" name="Login success" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f5e6a4f7-d1e4-4ddc-94ce-65118643bbc4" />
+        <suppliersInternal>
+          <dependency Id="2e912dde-e47f-4833-9aa3-7060b4a5f679">
+            <useCaseMoniker Id="6dc9ef8b-3eca-4940-8e71-a089a969734c" LastKnownName="SignalR" />
+            <elementDefinition Id="2e5e590c-ec1f-4740-835b-a4b9b807320d" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker Id="fdfc79e2-df9c-4aaf-a604-40d2fb9d4471" LastKnownName="Xamarin App" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="6dc9ef8b-3eca-4940-8e71-a089a969734c" name="SignalR" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="863e5630-1f82-4123-a6d9-e3bc3de0a8b4" />
+        <targetEnds>
+          <association Id="825b1bb2-35ad-4117-b4ee-74ed2f5db8e2" isDerived="false" sourceEndRoleName="SignalR" targetEndRoleName="Asp.Net Server" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="cfb329cc-9169-4af0-b931-580d8cfeb843" LastKnownName="Asp.Net Server" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9923e522-525f-45b6-bc59-d7d656a19c0d" name="SignalR" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9f7a8568-cd85-42fe-9a73-fe3add873c94" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7674a0e7-0a45-45d7-979d-a6bb764270cb" name="Asp.Net Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="3baa6432-5436-4a7d-871c-56937c36cb52" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4b694664-471b-41ca-b320-ce0c27b5a753" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="fdfc79e2-df9c-4aaf-a604-40d2fb9d4471" LastKnownName="Xamarin App" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="156480ee-1e34-4332-821a-6ee146abcff6" name="UseCaseDiagram">
+    <elementDefinition Id="0ff9eeea-620e-4c1d-9bb7-4aa47f198cc4" />
+  </package>
+</useCaseModelRoot>

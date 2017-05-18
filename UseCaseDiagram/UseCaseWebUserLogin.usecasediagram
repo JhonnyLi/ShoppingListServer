@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="8467c924-8339-4fe2-ae65-f5a562d984cf" name="UseCaseWebUserLogin" linkedPackageId="a49aebe5-a92f-4f80-8640-3bf408fb2e4c" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="8d56e428-de53-4a29-9e9c-babf9cd9fb7f">
+      <profileInstance Id="9eba5e0d-100a-4401-b4e7-aa1b3cfabb07" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="054c4460-427a-4535-a1da-79c9d0e58bfb">
+      <profileInstance Id="1d14af00-578f-40de-8d6a-da4124602c7d" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="fd66af9e-1d7d-4501-bd64-78ed0c66a896" name="WebClient" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f6125db8-c696-499b-b2e7-5ce0205e1a15" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="97bc11b2-e58d-4214-a46f-2e64d025e22e" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9bc6968f-bd56-4f0a-9228-ad0fb1d51ba1" />
+        <targetEnds>
+          <association Id="c6516046-227e-4399-9a88-a5955cb7bb52" isDerived="false" sourceEndRoleName="User" targetEndRoleName="Användaren klickar på logga in knappen." isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="0f13d1be-7d4a-4df9-a9fc-932a2d9137e1" LastKnownName="Login button" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="95a16cda-d696-45fd-aa07-263b588d7541" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f4776fe3-70e0-4bf5-bae9-fa11974f53c6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a9e35830-008b-46a8-aef7-5b273da80313" name="Användaren klickar på logga in knappen." isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="91706ef3-926b-4b91-a8cc-522ef947ddad" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0d9ae5a1-6f50-4470-8892-590404ce48d2" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="959c080a-7bea-434d-8366-879d662c8473" name="Facebook" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="797d6540-9ef5-4212-8aba-bde00dc7c4ec" />
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0f13d1be-7d4a-4df9-a9fc-932a2d9137e1" name="Login button" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cc4756f6-5287-46d0-b5bb-52b7415391dc" />
+        <additions>
+          <include Id="d9d1b6b2-0fdc-4d22-b323-7ad22147ea82">
+            <useCaseMoniker Id="8524ac27-453a-4425-a7db-cac6fdedb30b" LastKnownName="Facebook" />
+            <elementDefinition Id="51e6c171-35fc-42b9-8fe9-d8538c9492a2" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="fd66af9e-1d7d-4501-bd64-78ed0c66a896" LastKnownName="WebClient" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8524ac27-453a-4425-a7db-cac6fdedb30b" name="Facebook" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7a3416bb-c9e1-43d1-84c5-b01d08c05f9d" />
+        <targetEnds>
+          <association Id="efdffb08-c096-4a33-925a-84ee707700ff" isDerived="false" sourceEndRoleName="Facebook" targetEndRoleName="Facebook" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="959c080a-7bea-434d-8366-879d662c8473" LastKnownName="Facebook" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f2065a97-9d1a-4171-a76d-e80ab5e97edc" name="Facebook" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="188e6c91-a2d9-47b1-b99f-f1d5f6681a2a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="699db9fb-3cf9-4afb-bd4d-d53a8040cf50" name="Facebook" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f27b00a8-4909-4eb9-a9c8-5cd8abcba7b2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ae5d09c4-623d-4684-b13a-c3173bfc43ea" />
+          </association>
+        </targetEnds>
+        <extendedCases>
+          <extend Id="2e6539d5-2263-4303-a25e-b526e3c45e3a">
+            <useCaseMoniker Id="1d3e0a03-53d2-4310-bd91-e090b7fcdc15" LastKnownName="Login failed" />
+            <elementDefinition Id="9689b88e-e84a-4c77-a396-c0be2c4e266e" />
+          </extend>
+          <extend Id="165ad962-5bf7-4f13-b3a1-bead03fa9e98">
+            <useCaseMoniker Id="e8114dc0-0a4f-4b68-af85-2e29e41446b6" LastKnownName="Login accepted" />
+            <elementDefinition Id="f70bfb51-4fc2-4812-8e59-488f8b6ceab5" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="fd66af9e-1d7d-4501-bd64-78ed0c66a896" LastKnownName="WebClient" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e8114dc0-0a4f-4b68-af85-2e29e41446b6" name="Login accepted" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="eff12b7c-c273-4311-bde2-87eef028c696" />
+        <targetEnds>
+          <association Id="cab81b11-cca0-4b85-a381-369f9611a7a6" isDerived="false" sourceEndRoleName="Login accepted" targetEndRoleName="Asp.Net Server" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="e35b374b-931e-4354-b8d1-cf3f7863c807" LastKnownName="Asp.Net Server" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9855e289-6e3c-45b7-801c-8718de3abecf" name="Login accepted" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="096dff41-18f6-40a9-afa5-2f713dcc86e4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="596e97d1-6520-427c-b388-c6a7b530d248" name="Asp.Net Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="accb0c8b-447f-425d-adf8-d3fc3fb15bc6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="081f9806-e1f9-49af-b613-f972cafb4b3f" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="fd66af9e-1d7d-4501-bd64-78ed0c66a896" LastKnownName="WebClient" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1d3e0a03-53d2-4310-bd91-e090b7fcdc15" name="Login failed" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6d76aee3-8f0f-4da3-9411-a3e2bcbccc4f" />
+        <subjects>
+          <subsystemMoniker Id="fd66af9e-1d7d-4501-bd64-78ed0c66a896" LastKnownName="WebClient" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="e35b374b-931e-4354-b8d1-cf3f7863c807" name="Asp.Net Server" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f84f4a3a-c537-4398-b57b-4151b2d0be5e" />
+      </actor>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="a49aebe5-a92f-4f80-8640-3bf408fb2e4c" name="UseCaseDiagram">
+    <elementDefinition Id="0ff9eeea-620e-4c1d-9bb7-4aa47f198cc4" />
+  </package>
+</useCaseModelRoot>

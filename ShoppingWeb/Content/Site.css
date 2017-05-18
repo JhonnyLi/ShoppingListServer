@@ -52,3 +52,9 @@ div.not-logged-in-logo{
 a.navbar-brand.navbar-brand-extras{
     color:white;
 }
+
+ul li input.no-border-input{
+    border:none;
+    max-width:90%;
+    width:90%;
+}
