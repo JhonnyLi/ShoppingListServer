@@ -18,12 +18,12 @@ namespace ShoppingWeb.Hubs
     {
         private readonly DbOperations _ctx;
         private readonly IdentityOperations _idOps;
-        private readonly SyncIdentityUser _user;
+        //private readonly SyncIdentityUser _user;
         public SyncHub()
         {
             _ctx = new DbOperations();
             _idOps = new IdentityOperations();
-            _user = _idOps.GetUser(Context.QueryString["username"]);
+            //_user = _idOps.GetUser(Context.QueryString["username"]);
         }
         public void Send(string name, string message)
         {
