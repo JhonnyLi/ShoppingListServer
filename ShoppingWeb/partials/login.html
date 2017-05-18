@@ -1,0 +1,15 @@
+﻿<div>
+    <!--<form action="Login" method="post">-->
+    <form>
+        <label>Name: </label>
+        <input name="UserName" ng-model="user.UserName" type="text" />
+        <label>Password: </label>
+        <input name="Password" ng-model="user.Password" type="password" />
+        <label>Confirm Assword: </label>
+        <input name="ConfirmPassword" ng-model="user.ConfirmPassword" type="password" />
+        <!--<button type="submit">Ok</button>-->
+        <input type="submit" ng-click="Login(user)" value="Login" />
+    </form>
+    <pre>user = {{user | json}}</pre>
+    <pre>master = {{master | json}}</pre>
+</div>

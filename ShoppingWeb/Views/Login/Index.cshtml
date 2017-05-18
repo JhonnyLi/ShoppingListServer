@@ -1,0 +1,26 @@
+﻿@model ShoppingWeb.Models.ViewModels.LoginViewModel
+@*@{
+    Layout = null;
+}*@
+
+@*<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sync Loginscreen</title>
+</head>
+<body>*@
+    <div> 
+        <form action="Login" method="post">
+            <label>Name: </label>
+            <input name="UserName" type="text" />
+            <label>Password: </label>
+            <input name="Password" type="password" />
+            <label>Confirm Assword: </label>
+            <input name="ConfirmPassword" type="password" />
+            <button type="submit">Ok</button>
+        </form>
+    </div>
+@*</body>
+</html>*@
