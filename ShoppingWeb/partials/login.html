@@ -1,14 +1,47 @@
 ﻿<div>
+    <script>
+        //window.fbAsyncInit = function () {
+        //    FB.init({
+        //        appId: '270392530055674',
+        //        xfbml: true,
+        //        version: 'v2.9'
+        //    });
+        //    FB.AppEvents.logPageView();
+        //};
+
+        //(function (d, s, id) {
+        //    var js, fjs = d.getElementsByTagName(s)[0];
+        //    if (d.getElementById(id)) { return; }
+        //    js = d.createElement(s); js.id = id;
+        //    js.src = "//connect.facebook.net/en_US/sdk.js";
+        //    fjs.parentNode.insertBefore(js, fjs);
+        //}(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
+    <div id="fb-root">
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+
+    </div>
+    <script>
+        //(function (d, s, id) {
+        //    var js, fjs = d.getElementsByTagName(s)[0];
+        //    if (d.getElementById(id)) return;
+        //    js = d.createElement(s); js.id = id;
+        //    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.9&appId=270392530055674";
+        //    fjs.parentNode.insertBefore(js, fjs);
+        //}(document, 'script', 'facebook-jssdk'));
+    </script>
     <!--<form action="Login" method="post">-->
     <form>
         <label>Name: </label>
-        <input name="UserName" ng-model="user.UserName" type="text" />
+        <input name="UserName" ng-model="$parent.user.UserName" type="text" />
         <label>Password: </label>
-        <input name="Password" ng-model="user.Password" type="password" />
+        <input name="Password" ng-model="$parent.user.Password" type="password" />
         <label>Confirm Assword: </label>
-        <input name="ConfirmPassword" ng-model="user.ConfirmPassword" type="password" />
+        <!--<input name="ConfirmPassword" ng-model="user.Email" type="text" />-->
         <!--<button type="submit">Ok</button>-->
-        <input type="submit" ng-click="Login(user)" value="Login" />
+        <input type="submit" ng-click="Login($parent.user)" value="Login" />
     </form>
     <pre>user = {{user | json}}</pre>
     <pre>master = {{master | json}}</pre>

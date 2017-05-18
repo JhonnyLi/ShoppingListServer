@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="0ff9eeea-620e-4c1d-9bb7-4aa47f198cc4"
+  name="UseCaseDiagram" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <subsystem
+        Id="f6125db8-c696-499b-b2e7-5ce0205e1a15"
+        name="WebClient"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="9bc6968f-bd56-4f0a-9228-ad0fb1d51ba1"
+        name="User"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="0d9ae5a1-6f50-4470-8892-590404ce48d2"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Användaren klickar på logga in knappen."
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="cc4756f6-5287-46d0-b5bb-52b7415391dc"
+              LastKnownName="Login button"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f4776fe3-70e0-4bf5-bae9-fa11974f53c6"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="91706ef3-926b-4b91-a8cc-522ef947ddad"
+                  name="Användaren klickar på logga in knappen."
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="797d6540-9ef5-4212-8aba-bde00dc7c4ec"
+        name="Facebook"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="cc4756f6-5287-46d0-b5bb-52b7415391dc"
+        name="Login button"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="51e6c171-35fc-42b9-8fe9-d8538c9492a2">
+            <useCaseMoniker
+              Id="7a3416bb-c9e1-43d1-84c5-b01d08c05f9d"
+              LastKnownName="Facebook"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="f6125db8-c696-499b-b2e7-5ce0205e1a15"
+            LastKnownName="WebClient"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <artifact
+        Id="dec79a70-07cb-4c32-9c9f-7c99f78a5550"
+        name="Artifact1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7a3416bb-c9e1-43d1-84c5-b01d08c05f9d"
+        name="Facebook"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="ae5d09c4-623d-4684-b13a-c3173bfc43ea"
+            isDerived="false"
+            sourceEndRoleName="Facebook"
+            targetEndRoleName="Facebook"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="797d6540-9ef5-4212-8aba-bde00dc7c4ec"
+              LastKnownName="Facebook"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="188e6c91-a2d9-47b1-b99f-f1d5f6681a2a"
+                  name="Facebook"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f27b00a8-4909-4eb9-a9c8-5cd8abcba7b2"
+                  name="Facebook"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <extendedCases>
+          <extend
+            Id="9689b88e-e84a-4c77-a396-c0be2c4e266e">
+            <useCaseMoniker
+              Id="6d76aee3-8f0f-4da3-9411-a3e2bcbccc4f"
+              LastKnownName="Login failed"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </extend>
+          <extend
+            Id="f70bfb51-4fc2-4812-8e59-488f8b6ceab5">
+            <useCaseMoniker
+              Id="eff12b7c-c273-4311-bde2-87eef028c696"
+              LastKnownName="Login accepted"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="f6125db8-c696-499b-b2e7-5ce0205e1a15"
+            LastKnownName="WebClient"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="eff12b7c-c273-4311-bde2-87eef028c696"
+        name="Login accepted"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="081f9806-e1f9-49af-b613-f972cafb4b3f"
+            isDerived="false"
+            sourceEndRoleName="Login accepted"
+            targetEndRoleName="Asp.Net Server"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="f84f4a3a-c537-4398-b57b-4151b2d0be5e"
+              LastKnownName="Asp.Net Server"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="096dff41-18f6-40a9-afa5-2f713dcc86e4"
+                  name="Login accepted"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="accb0c8b-447f-425d-adf8-d3fc3fb15bc6"
+                  name="Asp.Net Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="f6125db8-c696-499b-b2e7-5ce0205e1a15"
+            LastKnownName="WebClient"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="6d76aee3-8f0f-4da3-9411-a3e2bcbccc4f"
+        name="Login failed"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f6125db8-c696-499b-b2e7-5ce0205e1a15"
+            LastKnownName="WebClient"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <artifact
+        Id="d0a83b97-56e7-4034-b0b0-1a2b9d338a09"
+        name="Artifact2"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="f84f4a3a-c537-4398-b57b-4151b2d0be5e"
+        name="Asp.Net Server"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="02a4ac25-edcf-41e3-9da0-efb48a11e551"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="e15df336-6c37-4422-a301-11ca7a69321b"
+        name="Xamarin App"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="e50510bc-8ad2-4111-9bbe-a61655e80aa4"
+        name="User"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="5add6d23-a661-4199-928c-63f90c0e5e46"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="Application startup"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="1f4ed8c7-dc06-40a4-b87c-08bb519e53c9"
+              LastKnownName="Application startup"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="97589442-2fad-4df1-b627-b04139e71312"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="14bcae06-b244-4814-955a-403009887ef7"
+                  name="Application startup"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="58f0f42c-8e7d-4220-afe8-dd4176b84534"
+        name="Facebook"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="6dac19c9-a8fd-42c3-8e2d-a7c909b262de"
+        name="Asp.Net Server"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1f4ed8c7-dc06-40a4-b87c-08bb519e53c9"
+        name="Application startup"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="29ec5249-0aa9-4b9d-b8e2-39d027ecde06">
+            <useCaseMoniker
+              Id="41649fb9-34a0-462e-b53b-c0fdd8bdfbdd"
+              LastKnownName="Login"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="e15df336-6c37-4422-a301-11ca7a69321b"
+            LastKnownName="Xamarin App"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="41649fb9-34a0-462e-b53b-c0fdd8bdfbdd"
+        name="Login"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="4fe3f554-457f-48b6-af54-d945bf3fea76"
+            isDerived="false"
+            sourceEndRoleName="Login"
+            targetEndRoleName="Facebook"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="58f0f42c-8e7d-4220-afe8-dd4176b84534"
+              LastKnownName="Facebook"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e5150ccd-544d-44e2-8bcb-96b186952383"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e6d59427-d290-4be6-b049-834c1a9b31cd"
+                  name="Facebook"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <extendedCases>
+          <extend
+            Id="f5ff90fb-bb1a-445a-8602-6cdc15bbabba">
+            <useCaseMoniker
+              Id="2dc340ea-a529-45a8-a2f5-d16cc5ff4053"
+              LastKnownName="Login failure"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </extend>
+          <extend
+            Id="0d98fc56-2185-49e1-8f36-857d13f95080">
+            <useCaseMoniker
+              Id="f5e6a4f7-d1e4-4ddc-94ce-65118643bbc4"
+              LastKnownName="Login success"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="e15df336-6c37-4422-a301-11ca7a69321b"
+            LastKnownName="Xamarin App"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="2dc340ea-a529-45a8-a2f5-d16cc5ff4053"
+        name="Login failure"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="e15df336-6c37-4422-a301-11ca7a69321b"
+            LastKnownName="Xamarin App"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f5e6a4f7-d1e4-4ddc-94ce-65118643bbc4"
+        name="Login success"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="2e5e590c-ec1f-4740-835b-a4b9b807320d">
+            <useCaseMoniker
+              Id="863e5630-1f82-4123-a6d9-e3bc3de0a8b4"
+              LastKnownName="SignalR"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker
+            Id="e15df336-6c37-4422-a301-11ca7a69321b"
+            LastKnownName="Xamarin App"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <artifact
+        Id="c0db5fcc-9322-48d5-b5ef-c9fd8a966802"
+        name="Artifact3"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="863e5630-1f82-4123-a6d9-e3bc3de0a8b4"
+        name="SignalR"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="4b694664-471b-41ca-b320-ce0c27b5a753"
+            isDerived="false"
+            sourceEndRoleName="SignalR"
+            targetEndRoleName="Asp.Net Server"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="6dac19c9-a8fd-42c3-8e2d-a7c909b262de"
+              LastKnownName="Asp.Net Server"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9f7a8568-cd85-42fe-9a73-fe3add873c94"
+                  name="SignalR"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3baa6432-5436-4a7d-871c-56937c36cb52"
+                  name="Asp.Net Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="e15df336-6c37-4422-a301-11ca7a69321b"
+            LastKnownName="Xamarin App"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

@@ -8,7 +8,6 @@ namespace ShoppingWeb.Controllers
 {
     public class HomeController : Controller
     {
-        //[Authorize]
         public ActionResult Index()
         {
             ViewData["Title"] = "Start";

@@ -9,6 +9,7 @@ namespace ShoppingWeb.Migrations
     using Models.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using DbOps;
+    using Constants;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ShoppingWeb.DbOps.DatabaseContext>
     {
@@ -17,11 +18,11 @@ namespace ShoppingWeb.Migrations
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
-        static class Constants
-        {
-            public const string Admin = "Admin";
-            public const string User = "User";
-        }
+        //static class Constants
+        //{
+        //    public const string Admin = "Admin";
+        //    public const string User = "User";
+        //}
         protected override void Seed(DatabaseContext context)
         {
             //  This method will be called after migrating to the latest version.
@@ -37,35 +38,22 @@ namespace ShoppingWeb.Migrations
             //);
 
             var RoleManager = new RoleManager<SyncIdentityRole>(new RoleStore<SyncIdentityRole>(context));
-            //var roles = RoleManager.Roles.ToArray();
-            if (RoleManager.RoleExists(Constants.Admin) == false)
-            {
-                RoleManager.Create(new SyncIdentityRole(Constants.Admin));
-                
-            }
-            if (RoleManager.RoleExists(Constants.User) == false)
-            {
-                RoleManager.Create(new SyncIdentityRole(Constants.User));
 
+            if (RoleManager.RoleExists(SyncConstants.Admin) == false)
+            {
+                RoleManager.Create(new SyncIdentityRole(SyncConstants.Admin));
             }
-            //    {
-            //        RoleManager.Create(new SyncIdentityRole(roles[i].Name));
-            //    }
-            //for (int i = 0; i < Constants.Count(); i++)
-            //{
-            //    if (RoleManager.RoleExists(roles[i].Name) == false)
-            //    {
-            //        RoleManager.Create(new SyncIdentityRole(roles[i].Name));
-            //    }
-            //}
-
-            // user
+            if (RoleManager.RoleExists(SyncConstants.User) == false)
+            {
+                RoleManager.Create(new SyncIdentityRole(SyncConstants.User));
+            }
 
             var UserManager = new UserManager<SyncIdentityUser>(new UserStore<SyncIdentityUser>(context));
             var PasswordHash = new PasswordHasher();
+            var user = new SyncIdentityUser();
             if (!context.Users.Any(u => u.UserName == "admin@jhonny.se"))
             {
-                var user = new SyncIdentityUser
+                user = new SyncIdentityUser
                 {
                     UserName = "admin@jhonny.se",
                     Email = "jhonny@jhonny.se",
@@ -73,50 +61,57 @@ namespace ShoppingWeb.Migrations
                 };
 
                 UserManager.Create(user);
-                UserManager.AddToRole(user.Id, Constants.Admin);
+                UserManager.AddToRole(user.Id, SyncConstants.Admin);
             }
 
             #region items
             var item1 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Lök"
+                Name = "Lök",
+                Active = true
             };
 
             var item2 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Gurka"
+                Name = "Gurka",
+                Active = true
             };
 
             var item3 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Bröd"
+                Name = "Bröd",
+                Active = true
             };
 
             var item4 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Smör"
+                Name = "Smör",
+                Active = true
             };
 
             var item5 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Gröt"
+                Name = "Gröt",
+                Active = true
             };
 
             var item6 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Vattenmelon"
+                Name = "Vattenmelon",
+                Active = true
             };
 
             var item7 = new Item
             {
                 ItemId = Guid.NewGuid(),
-                Name = "Tandborste"
+                Name = "Tandborste",
+                Active = true
             };
             #endregion
 
@@ -127,9 +122,8 @@ namespace ShoppingWeb.Migrations
                 item4,
                 item5,
                 item6,
-                item7  
+                item7
                 );
-
             context.ShoppingLists.AddOrUpdate(
                 p => p.Name,
                 new ShoppingList
@@ -140,25 +134,20 @@ namespace ShoppingWeb.Migrations
                     {
                         item1,
                         item2,
-                        item3
-                    }
-                },
-                new ShoppingList
-                {
-                    ShoppingListId = Guid.NewGuid(),
-                    Name = "En till lista",
-                    Items = new System.Collections.Generic.List<Item>()
-                    {
+                        item3,
                         item4,
                         item5,
                         item6,
-                        item7
-                    }
-
+                        item7,
+                    },
+                    User = user
                 }
                 );
         }
 
-        
+                }
+                );
+
+        }
     }
 }

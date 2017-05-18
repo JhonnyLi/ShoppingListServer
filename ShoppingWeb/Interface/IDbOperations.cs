@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using ShoppingWeb.Models;
 using ShoppingWeb.Models.Identity;
+using ShoppingWeb.Models.ViewModels;
 
 namespace ShoppingWeb.Interface
 {
     public interface IDbOperations
     {
-        ShoppingList GetShoppingListByIndex(int index);
+        ShoppingList GetShoppingListByUser();
         List<ShoppingList> GetAllShoppingLists();
         List<Item> GetAllItems();
 
-        bool AddNewList(ShoppingList model);
+        bool AddNewList(ShoppingListViewModel model);
+        bool AddOrUpdateList(ShoppingListViewModel model);
+        Task<bool> AddOrUpdateListAsync(ShoppingListViewModel model);
         bool RemoveList(Guid model);
 
         List<SyncIdentityRole> GetAllRoles();
