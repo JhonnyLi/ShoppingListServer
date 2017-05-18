@@ -19,11 +19,5 @@ namespace ShoppingWeb.Interface
         bool AddOrUpdateList(ShoppingListViewModel model);
         Task<bool> AddOrUpdateListAsync(ShoppingListViewModel model);
         bool RemoveList(Guid model);
-
-        //List<SyncIdentityRole> GetAllRoles();
-        //SyncIdentityUser GetUser(string name);
-        //bool UserNameExists(string name);
-        //bool UserEmailExists(string email);
-
     }
 }

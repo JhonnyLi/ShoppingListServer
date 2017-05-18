@@ -42,23 +42,4 @@ namespace ShoppingWeb.DbOps
             return manager;
         }
     }
-    //public class AppUserManager : UserManager<SyncIdentityUser>
-    //{
-    //    public AppUserManager(IUserStore<SyncIdentityUser> store)
-    //        : base(store)
-    //    {
-    //    }
-
-    //    // this method is called by Owin therefore best place to configure your User Manager
-    //    public static AppUserManager Create(
-    //        IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
-    //    {
-    //        var manager = new AppUserManager(
-    //            new UserStore<SyncIdentityUser>(context.Get<DatabaseContext>()));
-    //        // optionally configure your manager
-    //        // ...
-
-    //        return manager;
-    //    }
-    //}
 }
