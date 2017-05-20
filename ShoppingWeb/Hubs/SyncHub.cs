@@ -56,11 +56,7 @@ namespace ShoppingWeb.Hubs
             _ctx.AddOrUpdateList(list);
             string userName = Context.QueryString["username"];
             var jsonList = GetShoppingListViewModel();
-            //var shoppinglist = _ctx.GetAllShoppingLists().First();
-            //var jsonList = JsonConvert.SerializeObject(shoppinglist);
             Clients.All.listMessage(userName, list);
-            //Clients.All.listUpdateMessage(userName, jsonList);
-            //Clients.All.listUpdateMessage("Server says", jsonList);
         }
         
         public override Task OnConnected()
@@ -71,14 +67,16 @@ namespace ShoppingWeb.Hubs
             // After the code in this method completes, the client is informed that
             // the connection is established; for example, in a JavaScript client,
             // the start().done callback is executed.
-            //var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
-            //var serial = JsonConvert.SerializeObject(Context.QueryString);
-            //Clients.All.contextMessage(serial);
-            //hubContext.Clients.All.contextMessage(serial);
+            
+            //Hämta användarens namn ur requesten
             var name = Context.QueryString["username"];
-            //hubContext.Clients.All.connectionMessage(name, "Woop");
+
+            //Skicka meddelande om att personen anslutit.
             SyncHub.SendMessage("Server", $"{name} connected");
-            SyncHub.SendListUpdate();
+
+            //Skicka en uppdaterad lista till användarna.
+            SendListUpdate();
+
             return base.OnConnected();
         }
 
@@ -122,7 +120,6 @@ namespace ShoppingWeb.Hubs
                 };
                 listToSend.Items.Add(viewModelItem);
             }
-            //var jsonList = JsonConvert.SerializeObject(shoppinglist);
             var jsonList = JsonConvert.SerializeObject(listToSend);
             return jsonList;
         }
@@ -138,14 +135,13 @@ namespace ShoppingWeb.Hubs
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
             hubContext.Clients.All.contextMessage("Server", serial);
         }
-        public static void SendListUpdate()
+        public void SendListUpdate()
         {
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<SyncHub>();
-            //listUpdateMessage måste läggas till i alla klienter så att dom får en uppdaterad lista.
-            //var list = JsonConvert.SerializeObject(GlobalStorage.Clients.ToList());
             var _db = new DbOperations();
-            ShoppingList list = _db.GetAllShoppingLists().First();
-            string jsonList = JsonConvert.SerializeObject(list);
+            ShoppingList list = _db.GetAllShoppingLists().OrderBy(n=>n.Name).First();
+            //string jsonList = JsonConvert.SerializeObject(list);
+            //string jsonList = GetShoppingListViewModel();
             hubContext.Clients.All.listMessage("Server", list);
         }
         #endregion

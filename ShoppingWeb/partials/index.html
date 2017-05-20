@@ -3,7 +3,7 @@
         <div>
             <button ng-click="RefreshConnection()">Refresh</button>
             <button ng-click="stopHub()">StopHub</button>
-            <button ng-click="CheckIfItemListIsPristine()">Save changes</button>
+            <button ng-click="SaveListUpdate()">Save changes</button>
         </div>
         <div class="row">
             <!--<div class="col-md-3" style="border-right:1px solid darkgray;height:90vh;">
@@ -21,7 +21,7 @@
                         <input type="text" class="no-border-input" ng-if="!item.Active" width="80" ng-model="item.Name" placeholder="{{item.Name}}" style="border:none;" />
                         <div class="pull-right">
                             <!--<i class="fa fa-trash-o" aria-hidden="true" tooltip="Remove item" ng-click="$parent.ShoppingList.Items.splice($index,1)" ng-show="item.Active"></i>-->
-                            <i class="fa fa-trash-o" aria-hidden="true" tooltip="Remove item" ng-click="item.Deleted = !item.Deleted" ng-show="item.Active"></i>
+                            <i class="fa fa-trash-o" aria-hidden="true" tooltip="Remove item" ng-click="DeleteItem(item)" ng-show="item.Active"></i>
                             <input type="checkbox" ng-model="item.Active" />
                         </div>
                     </li>

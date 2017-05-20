@@ -1,7 +1,7 @@
 ﻿var app = angular.module('mainApp', ['ngRoute']);
 //var app = angular.module('mainApp', []);
 //var chat = $.connection.syncHub;
-var local = false;
+var local = true;
 var address = local ? "http://localhost:3768" : "http://sync.jhonny.se";
 
 window.fbAsyncInit = function () {
@@ -120,11 +120,8 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         $scope.startHub = function () {
             console.log("starthub: ", $scope.Auth);
             if ($scope.Auth) {
-                // Declare a proxy to reference the hub.
-                //chat = $.connection.syncHub;
                 chat.state.userName = $scope.user.UserName;
 
-                // Create a function that the hub can call to broadcast messages.
                 chat.client.broadcastMessage = function (name, message) {
                     var recievedMessage = angular.copy(chatMessageObject);
                     recievedMessage.name = name;
@@ -155,38 +152,17 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                     $scope.connectedUsers = JSON.parse(users);
                     console.log("UserList updated");
                 };
-                chat.client.contextMessage = function (serial) {
-
-                    var x = JSON.parse(serial);
-                    //debugger;
-
-                };
                 chat.client.userList = function (list) {
                     $scope.connectedUsers = list;
                 };
-                //chat.client.listUpdateMessage = function (name, list) {
-                //    //Lägg till kod för att hantera listuppdateringar.
-                //};
                 // Get the user name and store it to prepend to messages.
                 // Set initial focus to message input box.
                 $('#message').focus();
                 // Start the connection.
                 $.connection.hub.logging = true;
                 $.connection.hub.qs = { 'username': $scope.user.UserName };
-                //chat.qs = { 'username': 'Jhonny' };
-                //$.connection.hub.state.userName = "Jhonny";
                 $.connection.hub.start($scope.user.UserName).done(function () {
-                    //$scope.connected = true;
-                    //chat.server.send($scope.userName, $scope.userName + " connected");
-                    //chat.server.clientConnected();
-                    //$scope.$apply();
-                    //$("#connected").text("Connected");
-                    //$('#sendmessage').click(function () {
-                    //    // Call the Send method on the hub.
-                    //    chat.server.send($scope.userName, $scope.chatMessage);
-                    //    // Clear text box and reset focus for next comment.
-                    //    $('#message').val('').focus();
-                    //});
+
                 }).done(function () { $scope.connected = true; });
             }
         };
@@ -194,14 +170,11 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
             $.connection.hub.stop();
         };
         $scope.SendUpdatedList = function () {
-            console.log("SendUpdatedList", $scope.connected);
             if ($scope.connected) {
                 $scope.ShoppingList.ListUpdated = true;
                 var jsonlist = JSON.stringify($scope.ShoppingList);
-                chat.server.sendList(jsonlist).done(function (response) {
-                    console.log("SendUpdateList done: ", response);
+                chat.server.sendList(jsonlist).done(function () {
                     $scope.ShoppingList.ListUpdated = false;
-                    //debugger;
                 });
             }
         };
@@ -256,13 +229,18 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                 $scope.sendMessage();
             }
         };
-        $scope.CheckIfItemListIsPristine = function () {
+        //$scope.CheckIfItemListIsPristine = function () {
+        $scope.SaveListUpdate = function () {
             //if (!angular.equals($scope.ShoppingList, shoppingListCopy)) {
             console.log('ShoppingList has changed!');
             shoppingListCopy = angular.copy($scope.ShoppingList);
             $scope.ShoppingList.ListUpdated = true;
             $scope.SendUpdatedList();
             //}
+        };
+        $scope.DeleteItem = function (item) {
+            item.Deleted = true;
+            console.log(item);
         };
         $scope.navigate = function (path) {
             var navigateTo = "/" + path;

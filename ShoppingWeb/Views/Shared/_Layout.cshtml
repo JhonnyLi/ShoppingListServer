@@ -36,7 +36,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @*<li><a ng-click="navigate('login')" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Login</a></li>*@
-                    <li><a ng-click="fakeLogin()" ng-if="false"><i class="fa fa-home" aria-hidden="true"></i> Fake login</a></li>
+                    <li><a ng-click="fakeLogin()" ng-if="true"><i class="fa fa-home" aria-hidden="true"></i> Fake login</a></li>
                     @*<li><a href="javascript:document.getElementById('logoutForm').submit()" ng-click="isAuthorized()" ng-if="Auth">Log off</a></li>*@
                     <li><a href="#" ng-if="Auth"><i class="fa fa-user" aria-hidden="true"></i> {{user.FirstName + ' ' + user.LastName}} </a></li>
                     <li><a href="#" ng-click="FBLogin()" ng-if="!Auth">Login with Facebook</a></li>
@@ -52,20 +52,6 @@
             </div>
         </div>
         <div class="row">
-            @*<div class="col-sm-2 side-menu" ng-if="true">
-                <ul class="nav nav-pills nav-stacked" style="padding-top:15px;">
-                    <li role="presentation" ng-class="{active: location === '/'}">
-                        <a ng-click="navigate('')"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-                    </li>
-                    <li role="presentation" ng-class="{active: location === '/create'}">
-                        <a ng-click="navigate('create')"><i class="fa fa-list" aria-hidden="true"></i> Create new list</a>
-                    </li>
-                </ul>
-                <label>Availible lists:</label>
-                <ul style="list-style:none;">
-                    <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">{{list.Name}} (Items: {{list.Items.length}})</li>
-                </ul>
-            </div>*@
             <div class="col-sm-offset-2 col-sm-6"  ng-view ng-show="Auth">
                 @RenderBody()
             </div>
@@ -94,12 +80,12 @@
     </div>
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <footer class="pull-right" style="color:lightgray;height:5px;">
-            &copy; @DateTime.Now.Year
-            <div class="fb-like"
+            &copy; Jhonny Li - PROG15 - Examensarbete, Maj 2017
+            @*<div class="fb-like"
                  data-share="true"
                  data-width="450"
                  data-show-faces="true">
-            </div>
+            </div>*@
         </footer>
     </div>
 
