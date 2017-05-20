@@ -23,7 +23,7 @@ namespace ShoppingWeb
             }
             catch (Exception e)
             {
-                var fail = "";
+                var fail = e;
             }
         }
     }

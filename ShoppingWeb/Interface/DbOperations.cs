@@ -18,13 +18,26 @@ namespace ShoppingWeb.Interface
     {
         //Database access
         private readonly DatabaseContext _ctx;
-        private readonly string _userId;
+        //private readonly string _userId;
         
         public DbOperations()
         {
             _ctx = new DatabaseContext();
-            _userId = HttpContext.Current.User.Identity.GetUserId();
+            //_userId = HttpContext.Current.User.Identity.GetUserId();
         }
+
+        //Vad är detta och varför ?
+        //public IDbOperations IDbOperations
+        //{
+        //    get
+        //    {
+        //        throw new System.NotImplementedException();
+        //    }
+
+        //    set
+        //    {
+        //    }
+        //}
 
         public bool AddNewList(ShoppingListViewModel model)
         {
@@ -124,6 +137,7 @@ namespace ShoppingWeb.Interface
 
         public ShoppingList GetShoppingListByUser()
         {
+            var _userId = HttpContext.Current.User.Identity.GetUserId();
             var model = _ctx.ShoppingLists.FirstOrDefault(id=>id.User.Id == _userId);
             return model;
         }

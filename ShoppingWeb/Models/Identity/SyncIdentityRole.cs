@@ -10,5 +10,6 @@ namespace ShoppingWeb.Models.Identity
     {
         public SyncIdentityRole() : base() { }
         public SyncIdentityRole(string name) : base(name) { }
+
     }
 }

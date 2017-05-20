@@ -1,8 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
   dslVersion="1.0.0.0"
   Id="0ff9eeea-620e-4c1d-9bb7-4aa47f198cc4"
   name="UseCaseDiagram" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="fc3cd107-cd1f-42d8-ab6a-45ac1373c67a">
+      <body>User has made changes to the list and saves the changes.</body>
+      <annotatedElements>
+        <actorMoniker
+          Id="ce7290ff-7dfb-4fff-a2ec-3d1c9e0ccd49"
+          LastKnownName="User"
+          LastKnownLocation="UseCaseDiagram.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -536,6 +548,456 @@
             LastKnownLocation="UseCaseDiagram.uml" />
         </subjects>
       </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9b08fb8b-160c-46d7-afc4-18aceb24b277"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="59c6a7a2-3f9b-4c6b-874d-86e010094856"
+        name="Sequence1"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <lifelines>
+          <lifeline
+            Id="74e4f01f-ac69-4295-973f-1aba769be06e"
+            name="Lifeline1"
+            isActor="false"
+            lifelineDisplayName="Lifeline1" />
+        </lifelines>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="ce7290ff-7dfb-4fff-a2ec-3d1c9e0ccd49"
+        name="User"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="bc8b7c6e-f0c7-4261-9449-41149171f67a"
+            isDerived="false"
+            sourceEndRoleName="User"
+            targetEndRoleName="SaveButton"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="586f9299-2386-4a3b-8e2c-318045469eb3"
+              LastKnownName="SaveButton"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="47c7ab7a-1fe8-40d5-bc8a-6965b2be84c7"
+                  name="User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c660aebe-f803-4786-a095-b3fc37a56a50"
+                  name="SaveButton"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="ee8416a6-b30b-40c1-955c-0dcc93980ae8"
+        name="Xamarin MainView"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="586f9299-2386-4a3b-8e2c-318045469eb3"
+        name="SaveButton"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="95e8d2ca-0b5c-4ae7-b998-0faeb39df449">
+            <useCaseMoniker
+              Id="8fb2d46e-5264-40c4-a26f-b2a4ca724a09"
+              LastKnownName="ListSavedEvent triggers"
+              LastKnownLocation="UseCaseDiagram.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="ee8416a6-b30b-40c1-955c-0dcc93980ae8"
+            LastKnownName="Xamarin MainView"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8fb2d46e-5264-40c4-a26f-b2a4ca724a09"
+        name="ListSavedEvent triggers"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="fc27fb7c-a3d9-40d4-b426-24c93d8c32f1"
+            isDerived="false"
+            sourceEndRoleName="ListSavedEvent triggers"
+            targetEndRoleName="SignalR"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="07f7ae77-ec9a-408a-b526-e91678e46f88"
+              LastKnownName="SignalR"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1cffa916-dff0-4c7e-9b17-86aa7ed13879"
+                  name="ListSavedEvent triggers"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c1c2a522-9a1e-4acd-8cb4-ba4c7e2cc087"
+                  name="SignalR"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="ee8416a6-b30b-40c1-955c-0dcc93980ae8"
+            LastKnownName="Xamarin MainView"
+            LastKnownLocation="UseCaseDiagram.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="07f7ae77-ec9a-408a-b526-e91678e46f88"
+        name="SignalR"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="dde8ab05-003c-4504-b628-fc545cbd8514"
+            isDerived="false"
+            sourceEndRoleName="SignalR"
+            targetEndRoleName="Server"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="46c63b81-5631-4dc5-b93f-bf144c264db1"
+              LastKnownName="Server SignalR Hub"
+              LastKnownLocation="UseCaseDiagram.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4735497c-d1ea-4235-85f8-2aa487dbf593"
+                  name="SignalR"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7d36bbc5-1fac-4b76-8917-684a659f7729"
+                  name="Server"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="46c63b81-5631-4dc5-b93f-bf144c264db1"
+        name="Server SignalR Hub"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="8e6aa19b-fa02-4707-aa5a-ce9b4c208a97"
+        name="Sequence1"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification
+            Id="e74fe1e4-f26f-4a52-ba98-652f19d3820a"
+            name="BehaviorExecutionSpecification1">
+            <coveredLifelines>
+              <lifelineMoniker
+                Id="c33eea9e-3a04-4e8c-9691-9c79493cfc26"
+                LastKnownName="Client"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker
+                Id="70aa5abe-f0e6-4935-9d55-77122c9a147e"
+                LastKnownName="ExecutionOccurrenceSpecification2"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker
+                Id="5d70b6af-0ab8-4f92-a8c8-43e0f4891c78"
+                LastKnownName="ExecutionOccurrenceSpecification1"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="fe9d3729-0d29-4830-946b-f60082749db7"
+                LastKnownName="MessageOccurrenceSpecification2"
+                LastKnownLocation="UseCaseDiagram.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="eda6fc73-d5a7-485d-b2fc-46940c2b6c6c"
+                LastKnownName="MessageOccurrenceSpecification3"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification
+            Id="5d70b6af-0ab8-4f92-a8c8-43e0f4891c78"
+            name="ExecutionOccurrenceSpecification1">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="85bc28a7-e892-4329-8a94-a95d02fa37cc"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="UseCaseDiagram.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="c33eea9e-3a04-4e8c-9691-9c79493cfc26"
+                LastKnownName="Client"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="69b9f8ed-966a-4405-b982-4baf32590845"
+            name="MessageOccurrenceSpecification1">
+            <covered>
+              <lifelineMoniker
+                Id="3ec118c0-5fd4-41fd-858c-d7757e320f48"
+                LastKnownName="User"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="fe9d3729-0d29-4830-946b-f60082749db7"
+            name="MessageOccurrenceSpecification2">
+            <covered>
+              <lifelineMoniker
+                Id="c33eea9e-3a04-4e8c-9691-9c79493cfc26"
+                LastKnownName="Client"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="eda6fc73-d5a7-485d-b2fc-46940c2b6c6c"
+            name="MessageOccurrenceSpecification3">
+            <covered>
+              <lifelineMoniker
+                Id="c33eea9e-3a04-4e8c-9691-9c79493cfc26"
+                LastKnownName="Client"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="d99c6bb5-3011-47ac-b72f-5c4e0875d857"
+            name="MessageOccurrenceSpecification4">
+            <covered>
+              <lifelineMoniker
+                Id="3ec118c0-5fd4-41fd-858c-d7757e320f48"
+                LastKnownName="User"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification
+            Id="70aa5abe-f0e6-4935-9d55-77122c9a147e"
+            name="ExecutionOccurrenceSpecification2">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker
+                  Id="ef89ca87-25b0-46ff-87ac-0d29a23741ec"
+                  LastKnownName="ExecutionEvent"
+                  LastKnownLocation="UseCaseDiagram.uml" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker
+                Id="c33eea9e-3a04-4e8c-9691-9c79493cfc26"
+                LastKnownName="Client"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline
+            Id="3ec118c0-5fd4-41fd-858c-d7757e320f48"
+            name="User"
+            isActor="true"
+            lifelineDisplayName="User">
+            <represents>
+              <propertyMoniker
+                Id="fed5dbbb-9603-4e84-80f9-9f20532c5109"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </represents>
+            <topLevelOccurrences>
+              <messageOccurrenceSpecificationMoniker
+                Id="69b9f8ed-966a-4405-b982-4baf32590845"
+                LastKnownName="MessageOccurrenceSpecification1"
+                LastKnownLocation="UseCaseDiagram.uml" />
+              <messageOccurrenceSpecificationMoniker
+                Id="d99c6bb5-3011-47ac-b72f-5c4e0875d857"
+                LastKnownName="MessageOccurrenceSpecification4"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="c33eea9e-3a04-4e8c-9691-9c79493cfc26"
+            name="Client"
+            isActor="false"
+            lifelineDisplayName="Client">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker
+                Id="5d70b6af-0ab8-4f92-a8c8-43e0f4891c78"
+                LastKnownName="ExecutionOccurrenceSpecification1"
+                LastKnownLocation="UseCaseDiagram.uml" />
+              <executionOccurrenceSpecificationMoniker
+                Id="70aa5abe-f0e6-4935-9d55-77122c9a147e"
+                LastKnownName="ExecutionOccurrenceSpecification2"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline
+            Id="afaff179-1f86-4ec1-a792-6467cf95318a"
+            name="Lifeline1"
+            isActor="false"
+            lifelineDisplayName="Lifeline1" />
+        </lifelines>
+        <messages>
+          <message
+            Id="e400d5a0-d5d9-47e5-99b1-d0f9a777654c"
+            name="Spara updatering"
+            messageKind="Complete"
+            messageSort="SynchCall"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="69b9f8ed-966a-4405-b982-4baf32590845"
+                LastKnownName="MessageOccurrenceSpecification1"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="fe9d3729-0d29-4830-946b-f60082749db7"
+                LastKnownName="MessageOccurrenceSpecification2"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </receiveEvent>
+          </message>
+          <message
+            Id="e8ed76aa-e478-48f2-9236-1a6f12005e1d"
+            name="&lt;&lt;return&gt;&gt;"
+            messageKind="Complete"
+            messageSort="Reply"
+            createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="eda6fc73-d5a7-485d-b2fc-46940c2b6c6c"
+                LastKnownName="MessageOccurrenceSpecification3"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker
+                Id="d99c6bb5-3011-47ac-b72f-5c4e0875d857"
+                LastKnownName="MessageOccurrenceSpecification4"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </receiveEvent>
+          </message>
+        </messages>
+        <ownedAttributesInternal>
+          <property
+            Id="fed5dbbb-9603-4e84-80f9-9f20532c5109"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <actorMoniker
+                Id="9bc6968f-bd56-4f0a-9228-ad0fb1d51ba1"
+                LastKnownName="User"
+                LastKnownLocation="UseCaseDiagram.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="85bc28a7-e892-4329-8a94-a95d02fa37cc"
+        name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent
+        Id="ef89ca87-25b0-46ff-87ac-0d29a23741ec"
+        name="ExecutionEvent" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

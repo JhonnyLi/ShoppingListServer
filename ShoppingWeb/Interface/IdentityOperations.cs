@@ -25,6 +25,19 @@ namespace ShoppingWeb.Interface
             _userManager = new UserManager<SyncIdentityUser>(new UserStore<SyncIdentityUser>(_ctx));
             var authManager = HttpContext.Current.GetOwinContext().Authentication;
         }
+
+        //public IDbOperations IDbOperations
+        //{
+        //    get
+        //    {
+        //        throw new System.NotImplementedException();
+        //    }
+
+        //    set
+        //    {
+        //    }
+        //}
+
         public void SignInUser(SyncIdentityUser user)
         {
             var authManager = HttpContext.Current.GetOwinContext().Authentication;

@@ -2,6 +2,8 @@
 //var app = angular.module('mainApp', []);
 //var chat = $.connection.syncHub;
 var local = false;
+var address = local ? "http://localhost:3768" : "http://sync.jhonny.se";
+
 window.fbAsyncInit = function () {
     FB.init({
         appId: '270392530055674',
@@ -11,13 +13,13 @@ window.fbAsyncInit = function () {
     FB.AppEvents.logPageView();
 };
 
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+//(function (d, s, id) {
+//    var js, fjs = d.getElementsByTagName(s)[0];
+//    if (d.getElementById(id)) { return; }
+//    js = d.createElement(s); js.id = id;
+//    js.src = "//connect.facebook.net/en_US/sdk.js";
+//    fjs.parentNode.insertBefore(js, fjs);
+//}(document, 'script', 'facebook-jssdk'));
 
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -41,7 +43,8 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         $scope.userTemplate = { FirstName: "", LastName: "", Password: "", Email: "" };
         $scope.user = angular.copy($scope.userTemplate);
         $scope.isAuthorized = function () {
-            $http.post("http://sync.jhonny.se/Login/CheckLogin").then(function (result) {
+            //$http.post("http://sync.jhonny.se/Login/CheckLogin").then(function (result) {
+            $http.post(address + "/Login/CheckLogin").then(function (result) {
                 $scope.Auth = result.data;
                 if ($scope.Auth) {
                     $scope.startHub();
@@ -55,7 +58,8 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         };
         $scope.Login = function (user) {
             var dto = JSON.stringify($scope.user);
-            $http.post("http://sync.jhonny.se/Login/Login", dto).then(function (result) {
+            //$http.post("http://sync.jhonny.se/Login/Login", dto).then(function (result) {
+            $http.post(address + "/Login/Login", dto).then(function (result) {
                 $scope.isAuthorized();
             }, function (error) {
                 console.log("Login failed: ", error);
@@ -138,30 +142,31 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                 };
                 chat.client.listMessage = function (name, list) {
                     console.log("listeMessage yo !");
-                    var updatedList = JSON.parse(list);
-                    $scope.ShoppingList = updatedList;
+                    //var updatedList = JSON.parse(list);
+                    //$scope.ShoppingList = updatedList;
+                    $scope.ShoppingList = list;
                     $scope.$apply();
                     var recievedMessage = angular.copy(chatMessageObject);
                     recievedMessage.name = "Server";
                     recievedMessage.message = name + "updated the list";
                     $scope.ChatMessages.push(recievedMessage);
-                }
+                };
                 chat.client.usersOnlineMessage = function (users) {
                     $scope.connectedUsers = JSON.parse(users);
                     console.log("UserList updated");
-                }
+                };
                 chat.client.contextMessage = function (serial) {
 
                     var x = JSON.parse(serial);
-                    debugger;
+                    //debugger;
 
                 };
                 chat.client.userList = function (list) {
                     $scope.connectedUsers = list;
-                }
-                chat.client.listMessage = function (name, list) {
-                    //Lägg till kod för att hantera listuppdateringar.
                 };
+                //chat.client.listUpdateMessage = function (name, list) {
+                //    //Lägg till kod för att hantera listuppdateringar.
+                //};
                 // Get the user name and store it to prepend to messages.
                 // Set initial focus to message input box.
                 $('#message').focus();
@@ -173,8 +178,8 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                 $.connection.hub.start($scope.user.UserName).done(function () {
                     //$scope.connected = true;
                     //chat.server.send($scope.userName, $scope.userName + " connected");
-                    chat.server.clientConnected();
-                    $scope.$apply();
+                    //chat.server.clientConnected();
+                    //$scope.$apply();
                     //$("#connected").text("Connected");
                     //$('#sendmessage').click(function () {
                     //    // Call the Send method on the hub.
@@ -183,20 +188,20 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
                     //    $('#message').val('').focus();
                     //});
                 }).done(function () { $scope.connected = true; });
-            };
+            }
         };
         $scope.stopHub = function () {
             $.connection.hub.stop();
-        }
+        };
         $scope.SendUpdatedList = function () {
-            console.log("SendUpdatedList",$scope.connected);
+            console.log("SendUpdatedList", $scope.connected);
             if ($scope.connected) {
                 $scope.ShoppingList.ListUpdated = true;
                 var jsonlist = JSON.stringify($scope.ShoppingList);
                 chat.server.sendList(jsonlist).done(function (response) {
                     console.log("SendUpdateList done: ", response);
                     $scope.ShoppingList.ListUpdated = false;
-                    debugger;
+                    //debugger;
                 });
             }
         };
@@ -217,7 +222,7 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         $scope.connectedUsers = [];
         $scope.GetLocalStorage();
         //Localstorage
-        if (typeof (Storage) !== "undefined") {
+        if (typeof Storage !== "undefined") {
             $scope.user.UserName = localStorage.username;
 
         } else {
@@ -237,7 +242,7 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
             console.log("MainController");
             $scope.stopHub();
             $scope.startHub();
-        }
+        };
         $scope.sendMessage = function () {
             // Call the Send method on the hub.
             chat.server.send($scope.userName, $scope.chatMessage);
@@ -253,10 +258,10 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         };
         $scope.CheckIfItemListIsPristine = function () {
             //if (!angular.equals($scope.ShoppingList, shoppingListCopy)) {
-                console.log('ShoppingList has changed!');
-                shoppingListCopy = angular.copy($scope.ShoppingList);
-                $scope.ShoppingList.ListUpdated = true;
-                $scope.SendUpdatedList();
+            console.log('ShoppingList has changed!');
+            shoppingListCopy = angular.copy($scope.ShoppingList);
+            $scope.ShoppingList.ListUpdated = true;
+            $scope.SendUpdatedList();
             //}
         };
         $scope.navigate = function (path) {
@@ -270,14 +275,16 @@ app.controller('mainController', ['$scope', '$route', '$routeParams', '$location
         });
         $scope.fakeLogin = function () {
             $scope.user.UserName = "Fake Login";
-            var response = { name: "Fake Login", first_name: "Fake", last_name: "Login", id: "FakeLoginIdYo!", email: "email@email.com" }
+            var response = { name: "admin@jhonny.se", first_name: "Fake", last_name: "", id: "1Schema77!", email: "admin@jhonny.se" };
             $scope.SetLocalStorage(response);
-            $scope.FullUserName = response.name;
-            $scope.user.FirstName = response.first_name;
-            $scope.user.LastName = response.last_name;
-            $scope.user.Password = response.id;
-            $scope.user.Email = response.email;
+            $scope.GetLocalStorage();
+            //$scope.FullUserName = response.name;
+            //$scope.user.FirstName = response.first_name;
+            //$scope.user.LastName = response.last_name;
+            //$scope.user.Password = response.id;
+            //$scope.user.Email = response.email;
             $scope.Auth = true;
+            $scope.Login();
             $scope.startHub();
         };
     }]);
@@ -298,7 +305,7 @@ app.controller('indexController', ['$scope', '$http', '$location', '$rootScope',
         //    console.log('ShoppingList has changed!');
         //}, true); //true säger till $watch att kolla på alla attribut i objektet.
         $scope.Items = [];
-        var newItemTemplate = { Name: "", Comment: "", Active: true, Deleted:false };
+        var newItemTemplate = { Name: "", Comment: "", Active: true, Deleted: false };
         var newItem = angular.copy(newItemTemplate);
 
         $scope.NumberOfLists = 0;
@@ -411,8 +418,9 @@ app.controller('loginController', ['$scope', '$http', '$location', '$rootScope',
         };
         $scope.Login = function (user) {
             var dto = JSON.stringify($scope.$parent.user);
-            $http.post("http://sync.jhonny.se/Login/Login", dto).then(function (result) {
-                //$http.post("http://localhost:3768/Login/Login", dto).then(function (result) {
+            //$http.post("http://sync.jhonny.se/Login/Login", dto).then(function (result) {
+            //$http.post("http://localhost:3768/Login/Login", dto).then(function (result) {
+            $http.post(address + "/Login/Login", dto).then(function (result) {
                 $scope.$parent.user.UserName = result.data.UserName;
                 $scope.$parent.isAuthorized();
                 $scope.navigate('');
@@ -443,6 +451,6 @@ app.config(function ($routeProvider) {
     .otherwise({
         template: '<h1>Page does not exist</h1>'
     }
-    )
+    );
 });
 

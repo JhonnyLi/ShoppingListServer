@@ -247,3 +247,5 @@ ModelManifest.xml
 
 # Migrations configuration
 Configuration.cs
+/ShoppingWeb/ClassDiagram1.cd
+/ShoppingWeb/.bin

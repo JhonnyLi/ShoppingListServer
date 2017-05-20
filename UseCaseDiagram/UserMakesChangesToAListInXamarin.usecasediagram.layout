@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UserMakesChangesToAListInXamarin">
+  <useCaseModelRootMoniker Id="fc46d9f1-0442-436f-95f7-eadc27ad0012" />
+  <nestedChildShapes>
+    <actorShape Id="897aca63-f521-46cb-a5a2-28db88323501" absoluteBounds="0.5, 2.375, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="e3bd5d2f-27a5-42de-aacf-f873e5098daa" LastKnownName="User" />
+      <relativeChildShapes />
+    </actorShape>
+    <commentShape Id="fe8b9ab1-3933-4343-954b-0d9e1ce768aa" absoluteBounds="0.5, 0.75, 3.5, 0.375" customColor="251, 247, 200">
+      <commentMoniker Id="800be87c-4166-4e98-8a25-7fb15123cb60" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentConnector edgePoints="[(0.75 : 1.125); (0.75 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="fe8b9ab1-3933-4343-954b-0d9e1ce768aa" />
+        <actorShapeMoniker Id="897aca63-f521-46cb-a5a2-28db88323501" />
+      </nodes>
+    </commentConnector>
+    <actorShape Id="a3474315-7b16-4392-bd25-d916d244c41c" absoluteBounds="6, 1.875, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="c92e0f48-f45e-443a-9034-f4182fc78cf5" LastKnownName="SignalR" />
+      <relativeChildShapes />
+    </actorShape>
+    <actorShape Id="ae82399f-f238-4c92-8248-1d647c3870f8" absoluteBounds="6, 3.375, 0.5, 0.5" isReference="false" heightOffset="0">
+      <actorMoniker Id="5ac4e886-a4d7-4597-a0df-113a8d536f51" LastKnownName="Server SignalR Hub" />
+      <relativeChildShapes />
+    </actorShape>
+    <useCaseAssociationConnector edgePoints="[(6.25 : 2.375); (6.25 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="41d22b2a-1a9f-4252-a589-99ee0c4b223a" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="a3474315-7b16-4392-bd25-d916d244c41c" />
+        <actorShapeMoniker Id="ae82399f-f238-4c92-8248-1d647c3870f8" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <SubsystemShape Id="b05c1d0c-6276-42e5-9d8f-764e9afd19b2" absoluteBounds="1.25, 1.25, 4.25, 5.125" customColor="White">
+      <subsystemMoniker Id="1c966c4d-038c-4844-8610-13a3f9dc02a1" LastKnownName="Xamarin MainView" />
+      <nestedChildShapes>
+        <useCaseShape Id="76bd5378-8a2e-4667-8620-ed91c75c7dca" absoluteBounds="1.5, 2.125, 1, 0.5" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="a0b34e0d-cadb-4dda-b4aa-f3f00ff74674" LastKnownName="SaveButton" />
+          <relativeChildShapes />
+        </useCaseShape>
+        <useCaseShape Id="fcc36c04-47f7-45be-a523-3f67eac5c4d8" absoluteBounds="3.5, 1.75, 1.5, 0.5" customColor="238, 237, 131" heightOffset="0">
+          <useCaseMoniker Id="e2d677e2-2f70-475b-a7e4-513248a41da0" LastKnownName="ListSavedEvent triggers" />
+          <relativeChildShapes />
+        </useCaseShape>
+      </nestedChildShapes>
+    </SubsystemShape>
+    <useCaseAssociationConnector edgePoints="[(1 : 2.575); (1.53576165455737 : 2.46784766908853)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="bf852047-66f8-40cb-a5ca-a1abd1ff4c4d" />
+      <relativeChildShapes />
+      <nodes>
+        <actorShapeMoniker Id="897aca63-f521-46cb-a5a2-28db88323501" />
+        <useCaseShapeMoniker Id="76bd5378-8a2e-4667-8620-ed91c75c7dca" />
+      </nodes>
+    </useCaseAssociationConnector>
+    <includeConnector edgePoints="[(2.47434164902526 : 2.29594305849579); (3.57917960675006 : 2.11180339887499)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black" useCaseStereotype="«include»">
+      <includeMoniker Id="4ff95118-2ba3-45a8-a9be-1ba5c9676771" />
+      <relativeChildShapes />
+      <moveableDecoratorHostShapes>
+        <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="2.625, 2, 0.52439594268798828, 0.14800345897674561" shapeFieldName="NameDecorator" />
+      </moveableDecoratorHostShapes>
+      <nodes>
+        <useCaseShapeMoniker Id="76bd5378-8a2e-4667-8620-ed91c75c7dca" />
+        <useCaseShapeMoniker Id="fcc36c04-47f7-45be-a523-3f67eac5c4d8" />
+      </nodes>
+    </includeConnector>
+    <useCaseAssociationConnector edgePoints="[(4.98715414020074 : 2.04607213376255); (6 : 2.109375)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="" targetMultiplicity="">
+      <associationMoniker Id="adbec498-8540-4624-8314-5f58c746df71" />
+      <relativeChildShapes />
+      <nodes>
+        <useCaseShapeMoniker Id="fcc36c04-47f7-45be-a523-3f67eac5c4d8" />
+        <actorShapeMoniker Id="a3474315-7b16-4392-bd25-d916d244c41c" />
+      </nodes>
+    </useCaseAssociationConnector>
+  </nestedChildShapes>
+</useCaseDiagram>

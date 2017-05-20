@@ -30,7 +30,7 @@ namespace ShoppingWeb
                      "~/Scripts/angular-route.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
-                "~/Scripts/jquery.signalR-2.2.1.js",
+                "~/Scripts/jquery.signalR-2.2.*",
                 "~/signalr/hubs"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

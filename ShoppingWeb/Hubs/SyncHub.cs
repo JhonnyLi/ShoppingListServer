@@ -17,14 +17,16 @@ namespace ShoppingWeb.Hubs
     public class SyncHub : Hub
     {
         private readonly DbOperations _ctx;
-        private readonly IdentityOperations _idOps;
-        private readonly SyncIdentityUser _user;
+        //private readonly IdentityOperations _idOps;
+        //private readonly SyncIdentityUser _user;
         public SyncHub()
         {
             _ctx = new DbOperations();
-            _idOps = new IdentityOperations();
-            _user = _idOps.GetUser(Context.QueryString["username"]);
+            //_idOps = new IdentityOperations();
+            //_user = _idOps.GetUser(Context.QueryString["username"]);
         }
+
+
         public void Send(string name, string message)
         {
             //string userName = Clients.Caller.userName;
@@ -56,21 +58,11 @@ namespace ShoppingWeb.Hubs
             var jsonList = GetShoppingListViewModel();
             //var shoppinglist = _ctx.GetAllShoppingLists().First();
             //var jsonList = JsonConvert.SerializeObject(shoppinglist);
-            Clients.All.listMessage(userName, jsonList);
+            Clients.All.listMessage(userName, list);
+            //Clients.All.listUpdateMessage(userName, jsonList);
             //Clients.All.listUpdateMessage("Server says", jsonList);
         }
-        //public async Task<bool> SendList(string updatedList)
-        //{
-        //    var list = JsonConvert.DeserializeObject<ShoppingListViewModel>(updatedList);
-        //    await _ctx.AddOrUpdateListAsync(list);
-        //    string userName = Context.QueryString["username"];
-        //    var jsonList = GetShoppingListViewModel();
-        //    //var shoppinglist = _ctx.GetAllShoppingLists().First();
-        //    //var jsonList = JsonConvert.SerializeObject(shoppinglist);
-        //    await Clients.All.listUpdateMessage(userName, jsonList);
-        //    return true;
-        //    //Clients.All.listUpdateMessage("Server says", jsonList);
-        //}
+        
         public override Task OnConnected()
         {
             // Add your own code here.
@@ -86,6 +78,7 @@ namespace ShoppingWeb.Hubs
             var name = Context.QueryString["username"];
             //hubContext.Clients.All.connectionMessage(name, "Woop");
             SyncHub.SendMessage("Server", $"{name} connected");
+            SyncHub.SendListUpdate();
             return base.OnConnected();
         }
 
@@ -151,7 +144,8 @@ namespace ShoppingWeb.Hubs
             //listUpdateMessage måste läggas till i alla klienter så att dom får en uppdaterad lista.
             //var list = JsonConvert.SerializeObject(GlobalStorage.Clients.ToList());
             var _db = new DbOperations();
-            List<Item> list = _db.GetAllShoppingLists().First().Items;
+            ShoppingList list = _db.GetAllShoppingLists().First();
+            string jsonList = JsonConvert.SerializeObject(list);
             hubContext.Clients.All.listMessage("Server", list);
         }
         #endregion

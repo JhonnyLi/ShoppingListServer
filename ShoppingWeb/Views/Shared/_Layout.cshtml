@@ -14,10 +14,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    <meta name="description" content="Synchronized shoppinglist" />
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
-
-
     @*<script>
             var auth = @auth.ToString().ToLower();
         </script>*@
@@ -37,7 +36,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @*<li><a ng-click="navigate('login')" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Login</a></li>*@
-                    <li><a ng-click="fakeLogin()" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Fake login</a></li>
+                    <li><a ng-click="fakeLogin()" ng-if="false"><i class="fa fa-home" aria-hidden="true"></i> Fake login</a></li>
                     @*<li><a href="javascript:document.getElementById('logoutForm').submit()" ng-click="isAuthorized()" ng-if="Auth">Log off</a></li>*@
                     <li><a href="#" ng-if="Auth"><i class="fa fa-user" aria-hidden="true"></i> {{user.FirstName + ' ' + user.LastName}} </a></li>
                     <li><a href="#" ng-click="FBLogin()" ng-if="!Auth">Login with Facebook</a></li>

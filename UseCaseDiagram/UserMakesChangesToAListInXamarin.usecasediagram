@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="fc46d9f1-0442-436f-95f7-eadc27ad0012" name="UserMakesChangesToAListInXamarin" linkedPackageId="0cda2030-6f4e-41a9-addc-a271425d45b9" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="800be87c-4166-4e98-8a25-7fb15123cb60">
+      <elementDefinition Id="fc3cd107-cd1f-42d8-ab6a-45ac1373c67a" />
+      <body>User has made changes to the list and saves the changes.</body>
+      <annotatedElements>
+        <actorMoniker Id="e3bd5d2f-27a5-42de-aacf-f873e5098daa" LastKnownName="User" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="4c35db14-b093-44d8-a9c4-3564ea648107">
+      <profileInstance Id="230e61c4-ba50-458b-8925-9d672c5f7174" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="7f39886a-a0a7-41d5-9948-7e97f99aa886">
+      <profileInstance Id="6bb4a154-0db2-499e-b08a-c458c5b844f2" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="e3bd5d2f-27a5-42de-aacf-f873e5098daa" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ce7290ff-7dfb-4fff-a2ec-3d1c9e0ccd49" />
+        <targetEnds>
+          <association Id="bf852047-66f8-40cb-a5ca-a1abd1ff4c4d" isDerived="false" sourceEndRoleName="User" targetEndRoleName="SaveButton" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a0b34e0d-cadb-4dda-b4aa-f3f00ff74674" LastKnownName="SaveButton" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="82f603eb-762a-4ac1-88ba-857935abf4eb" name="User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="47c7ab7a-1fe8-40d5-bc8a-6965b2be84c7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8affec1d-233a-4a5c-8271-4b32e915da03" name="SaveButton" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c660aebe-f803-4786-a095-b3fc37a56a50" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bc8b7c6e-f0c7-4261-9449-41149171f67a" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="1c966c4d-038c-4844-8610-13a3f9dc02a1" name="Xamarin MainView" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ee8416a6-b30b-40c1-955c-0dcc93980ae8" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="a0b34e0d-cadb-4dda-b4aa-f3f00ff74674" name="SaveButton" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="586f9299-2386-4a3b-8e2c-318045469eb3" />
+        <additions>
+          <include Id="4ff95118-2ba3-45a8-a9be-1ba5c9676771">
+            <useCaseMoniker Id="e2d677e2-2f70-475b-a7e4-513248a41da0" LastKnownName="ListSavedEvent triggers" />
+            <elementDefinition Id="95e8d2ca-0b5c-4ae7-b998-0faeb39df449" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="1c966c4d-038c-4844-8610-13a3f9dc02a1" LastKnownName="Xamarin MainView" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="e2d677e2-2f70-475b-a7e4-513248a41da0" name="ListSavedEvent triggers" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8fb2d46e-5264-40c4-a26f-b2a4ca724a09" />
+        <targetEnds>
+          <association Id="adbec498-8540-4624-8314-5f58c746df71" isDerived="false" sourceEndRoleName="ListSavedEvent triggers" targetEndRoleName="SignalR" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="c92e0f48-f45e-443a-9034-f4182fc78cf5" LastKnownName="SignalR" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2c3b4990-3ddd-4c27-a058-77b732bbca0a" name="ListSavedEvent triggers" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1cffa916-dff0-4c7e-9b17-86aa7ed13879" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8ac154e0-df7e-41d1-9860-c2e19b47f466" name="SignalR" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c1c2a522-9a1e-4acd-8cb4-ba4c7e2cc087" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fc27fb7c-a3d9-40d4-b426-24c93d8c32f1" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1c966c4d-038c-4844-8610-13a3f9dc02a1" LastKnownName="Xamarin MainView" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <actor Id="c92e0f48-f45e-443a-9034-f4182fc78cf5" name="SignalR" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="07f7ae77-ec9a-408a-b526-e91678e46f88" />
+        <targetEnds>
+          <association Id="41d22b2a-1a9f-4252-a589-99ee0c4b223a" isDerived="false" sourceEndRoleName="SignalR" targetEndRoleName="Server" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="5ac4e886-a4d7-4597-a0df-113a8d536f51" LastKnownName="Server SignalR Hub" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6b9a2ada-cccb-4bb0-9960-7adca3a7d0ec" name="SignalR" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4735497c-d1ea-4235-85f8-2aa487dbf593" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="75dbd9cd-f4c0-4eb1-9ba8-6f965ab1ec80" name="Server" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7d36bbc5-1fac-4b76-8917-684a659f7729" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="dde8ab05-003c-4504-b628-fc545cbd8514" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="5ac4e886-a4d7-4597-a0df-113a8d536f51" name="Server SignalR Hub" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="46c63b81-5631-4dc5-b93f-bf144c264db1" />
+      </actor>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="0cda2030-6f4e-41a9-addc-a271425d45b9" name="UseCaseDiagram">
+    <elementDefinition Id="0ff9eeea-620e-4c1d-9bb7-4aa47f198cc4" />
+  </package>
+</useCaseModelRoot>

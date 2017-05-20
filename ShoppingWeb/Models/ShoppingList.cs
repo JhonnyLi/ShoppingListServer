@@ -14,5 +14,7 @@ namespace ShoppingWeb.Models
         public virtual SyncIdentityUser User { get; set; }
         public virtual List<SyncIdentityUser> Users { get; set; } = new List<SyncIdentityUser>();
         public virtual List<Item> Items { get; set; } = new List<Item>();
+
+        
     }
 }

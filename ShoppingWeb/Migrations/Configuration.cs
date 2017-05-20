@@ -36,9 +36,12 @@ namespace ShoppingWeb.Migrations
             //  new Person { FullName = "Brice Lambson" },
             //  new Person { FullName = "Rowan Miller" }
             //);
-
+            //if (System.Diagnostics.Debugger.IsAttached == false)
+            //{
+            //    System.Diagnostics.Debugger.Launch();
+            //}
             var RoleManager = new RoleManager<SyncIdentityRole>(new RoleStore<SyncIdentityRole>(context));
-
+            var penis = RoleManager.RoleExists(SyncConstants.Admin);
             if (RoleManager.RoleExists(SyncConstants.Admin) == false)
             {
                 RoleManager.Create(new SyncIdentityRole(SyncConstants.Admin));
@@ -47,6 +50,7 @@ namespace ShoppingWeb.Migrations
             {
                 RoleManager.Create(new SyncIdentityRole(SyncConstants.User));
             }
+
 
             var UserManager = new UserManager<SyncIdentityUser>(new UserStore<SyncIdentityUser>(context));
             var PasswordHash = new PasswordHasher();

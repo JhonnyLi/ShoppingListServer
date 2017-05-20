@@ -14,14 +14,22 @@ namespace ShoppingWeb.DbOps
 {
     public class DatabaseContext : IdentityDbContext<SyncIdentityUser>
     {
+#if DEBUG
         public DatabaseContext() : base("name=SyncDb_debug")
         {
 
         }
+#endif
+#if (!DEBUG)
+        public DatabaseContext() : base("name=SyncDb")
+        {
 
+        }
+#endif
         public DbSet<ShoppingList> ShoppingLists { get; set; }
         public DbSet<Item> Items { get; set; }
-        
+
+
     }
     public class AppUserManager : UserManager<SyncIdentityUser>
     {
