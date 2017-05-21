@@ -1,8 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
 
-@*@{
-        var auth = Request.IsAuthenticated;
-    }*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +14,6 @@
     <meta name="description" content="Synchronized shoppinglist" />
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
-    @*<script>
-            var auth = @auth.ToString().ToLower();
-        </script>*@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background:#c8bfe7;">
         <div class="container" style="height:5vh;">
             <div class="navbar-header">
@@ -35,9 +29,7 @@
                     <li><a href="#!" style="text-shadow: 1px 1px black;">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @*<li><a ng-click="navigate('login')" ng-if="!Auth"><i class="fa fa-home" aria-hidden="true"></i> Login</a></li>*@
                     <li><a ng-click="fakeLogin()" ng-if="false"><i class="fa fa-home" aria-hidden="true"></i> Fake login</a></li>
-                    @*<li><a href="javascript:document.getElementById('logoutForm').submit()" ng-click="isAuthorized()" ng-if="Auth">Log off</a></li>*@
                     <li><a href="#" ng-if="Auth"><i class="fa fa-user" aria-hidden="true"></i> {{user.FirstName + ' ' + user.LastName}} </a></li>
                     <li><a href="#" ng-click="FBLogin()" ng-if="!Auth">Login with Facebook</a></li>
                     <li><a href="/Login/Logout" ng-if="Auth" ng-click="ClearLocalStorage()">Log off</a></li>
@@ -81,28 +73,13 @@
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <footer class="pull-right" style="color:lightgray;height:5px;">
             &copy; Jhonny Li - PROG15 - Examensarbete, Maj 2017
-            @*<div class="fb-like"
-                 data-share="true"
-                 data-width="450"
-                 data-show-faces="true">
-            </div>*@
         </footer>
     </div>
-
-
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/angularroute")
     @Scripts.Render("~/bundles/signalr")
     @RenderSection("scripts", required: false)
     <script src="signalr/hubs"></script>
-    @{
-        if (Request.IsAuthenticated)
-        {
-        }
-
-    }
-
 </body>
-
 </html>

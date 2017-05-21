@@ -1,45 +1,27 @@
 ﻿<div class="row main-page">
     <div class="col-md-10">
         <div>
-            <button ng-click="RefreshConnection()">Refresh</button>
-            <button ng-click="stopHub()">StopHub</button>
-            <button ng-click="SaveListUpdate()">Save changes</button>
+            <!--<button ng-click="RefreshConnection()">Refresh</button>
+            <button ng-click="stopHub()">StopHub</button>-->
+            <!--<button ng-click="SaveListUpdate()">Save changes</button>-->
         </div>
         <div class="row">
-            <!--<div class="col-md-3" style="border-right:1px solid darkgray;height:90vh;">
-                <label>Availible lists:</label>
-                <ul style="list-style:none;">
-                    <li ng-repeat="list in ShoppingLists" ng-click="getList($index)">{{list.Name}} (Items: {{list.Items.length}})</li>
-                </ul>
-            </div>-->
             <div class="col-md-12" style="height:80vh;">
-                <!--<label>Selected list:</label>-->
-                <!--<div style="margin-left:15px;" ng-show="ShoppingList.Name !== ''">List name: {{ShoppingList.Name}}</div>-->
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="item in $parent.ShoppingList.Items track by $index">
                         <label style="text-decoration:line-through; font-weight:lighter" ng-if="item.Active">{{item.Name}}</label>
                         <input type="text" class="no-border-input" ng-if="!item.Active" width="80" ng-model="item.Name" placeholder="{{item.Name}}" style="border:none;" />
                         <div class="pull-right">
-                            <!--<i class="fa fa-trash-o" aria-hidden="true" tooltip="Remove item" ng-click="$parent.ShoppingList.Items.splice($index,1)" ng-show="item.Active"></i>-->
                             <i class="fa fa-trash-o" aria-hidden="true" tooltip="Remove item" ng-click="DeleteItem(item)" ng-show="item.Active"></i>
                             <input type="checkbox" ng-model="item.Active" />
                         </div>
                     </li>
                     <li class="list-group-item">
-                        <!--<input type="text" class="no-border-input" autofocus ng-keyup="AddItemOnEnter($event)" ng-model="newItem.Name" placeholder="Add new item" style="border:none;" />-->
                         <input id="itemInput" type="text" class="no-border-input" autofocus ng-keyup="AddItemOnEnter($event)" ng-model="newItem.Name" placeholder="Add new item" style="border:none;" />
                     </li>
                 </ul>
-                <!--<ul style="list-style:circle">
-                    <li ng-repeat="item in ShoppingList.Items track by $index" ng-click="ShoppingList.Items.splice($index,1)">{{item.Name}}</li>
-                </ul>-->
+                <button class="pull-right" ng-click="SaveListUpdate()">Save changes</button>
             </div>
-            <!--<div class="col-md-12">
-                <label>Previously used items:</label>
-                <ul style="list-style:none">
-                    <li ng-repeat="item in Items" ng-click="ShoppingList.Items.push(item)" style="margin-left:-40px;">{{item.Name}}</li>
-                </ul>
-            </div>-->
         </div>
 
     </div>
