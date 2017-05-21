@@ -1,7 +1,7 @@
 ﻿var app = angular.module('mainApp', ['ngRoute']);
 //var app = angular.module('mainApp', []);
 //var chat = $.connection.syncHub;
-var local = true;
+var local = false;
 var address = local ? "http://localhost:3768" : "http://sync.jhonny.se";
 
 window.fbAsyncInit = function () {
